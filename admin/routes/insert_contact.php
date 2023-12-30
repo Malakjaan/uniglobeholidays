@@ -1,5 +1,5 @@
 <?php
-require_once('../../config/connection.php');
+require_once('../../config/connection.php');{
     $pem = $_POST['pemail'] ;
     $sem = $_POST['semail'] ;
     $iad = $_POST['iaddress'] ;
@@ -13,7 +13,8 @@ require_once('../../config/connection.php');
         if($result) {
             echo 200; 
         } else {
-            echo 201;
+            echo mysqli_error($dbcon);
         }
-
+}
 ?>
+  

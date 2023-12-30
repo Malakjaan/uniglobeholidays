@@ -22,6 +22,17 @@ if(isset($_POST['filename']) && $_POST['filename'] == 'insert_package') {
        VALUES('$pn', '$pt','$nd','$nn','$pc', '$org_name')";
         $result = mysqli_query($dbcon, $query);
         if($result) {
+            $get_package_id = "SELECT max(id) as 'id' FROM tbl_package";
+            $run_package_id = mysqli_query($dbcon, $get_package_id);
+            $row_package_id = mysqli_fetch_array($run_package_id);
+            $package_id     = $row_package_id['id'];
+            $dayno = 1;
+            while($nd > 0) {
+                $insert_desc = "INSERT INTO tbl_package_desc(p_id, day_no, day_title, day_desc, image, added_on) VALUES($package_id, $dayno, '', '', '', NOW())";
+                $run_desc    =  mysqli_query($dbcon, $insert_desc);
+                $nd--;
+                $dayno++;
+            }
             echo 200;
         } else {
             echo mysqli_error($dbcon); 

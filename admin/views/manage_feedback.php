@@ -34,7 +34,7 @@
                         </div>
                         <br>
                         <div class="form-group col-md-8">
-                                <button class="btn btn-primary" id="btn_save_contact_details" type="submit">Submit Feedback</button>
+                                <button class="btn btn-primary" id="btn_save_feedback_details" type="submit">Submit Feedback</button>
                         </div>
                         </form>
 
@@ -100,7 +100,7 @@
                       Edit
                 </button>
                 <br>
-                <button  data-id="<?php echo $row['id'];?>"  onclick="confirm('Are you sure you want to delete this feedback')" style="padding:10px;text-decoration:none; background:red; color:white; border-radius:6px; font-size:12px; font-weight:bold" id="btnDelete">Delete</a>
+                <button  id="<?php echo $row['id'];?>"  class="btn btn-danger btnDeletefeedback" onclick="confirm('Are you sure you want to delete this Feedback')" value="<?php echo $row['id'];?>" id="btnDelete" data-target="btnDeletefeedback">Delete</a>
          </td>
          <td> 
 

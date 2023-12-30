@@ -52,7 +52,7 @@
                       Edit
                 </button>
                 <br>
-                <button  data-id="<?php echo $row['id'];?>"  onclick="confirm('Are you sure you want to delete this Slider')" style="padding:10px;text-decoration:none; background:red; color:white; border-radius:6px; font-size:12px; font-weight:bold" id="btnDelete">Delete</a>
+                <button  id="<?php echo $row['id'];?>"  class="btn btn-danger btnDeleteSlider" onclick="confirm('Are you sure you want to delete this Slider')" value="<?php echo $row['id'];?>" id="btnDelete" data-target="btnDeleteSlider">Delete</a>
          </td>
          <td> 
 

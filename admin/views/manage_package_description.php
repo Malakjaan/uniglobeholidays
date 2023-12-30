@@ -1,4 +1,12 @@
 <?php 
+
+if(!isset($_GET['p_id'])) {
+    echo "Not Found";
+} 
+
+$p_id = $_GET['p_id'];
+$p_name = $_GET['p_name'];
+
 require_once('../../config/connection.php');
 require_once('../includes/header.php'); ?>
 
@@ -10,18 +18,18 @@ require_once('../includes/header.php'); ?>
                         <form style="width:720px; color: black" enctype="multipart/form-data"method="post" id="frmPackage">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="name">Package Name</label> <input class="form-control" id="package_name" name="package_name" placeholder="Package Name" type="text">
+                                    <label for="name">Package Name</label> <input class="form-control" id="package_name" value="<?php echo $p_name;?>" readonly name="package_name" placeholder="Package Name" type="text">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="name">Package Type</label> 
-                                    <select style="color:black" class="form-control" id="package_type" type="text" name="package_type">
-                                        <option>Choose Package Type</option>
+                                    <select style="color:black" class="form-control" id="day_number" type="text" name="day_number">
+                                        <option>Choose Day Number</option>
                                         <?php
-                                            $get_type = "SELECT * FROM tbl_package_type";
+                                            $get_type = "SELECT day_no FROM tbl_package_desc WHERE p_id = $p_id AND is_filled = 0";
                                             $run_type = mysqli_query($dbcon, $get_type);
                                             while ($row = mysqli_fetch_assoc($run_type)) {
                                         ?>
-                                            <option value="<?php echo $row['id']?>"><?php echo $row['name']; ?></option>
+                                            <option value="<?php echo $row['day_no']?>"><?php echo $row['day_no']; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -30,21 +38,18 @@ require_once('../includes/header.php'); ?>
                                 <label for="inputAddress">Choose Package Image</label> <input class="form-control" id="image" name="image" type="file" />
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-md-4">
-                                    <label for="number">No of Days</label> <input class="form-control" id="no_of_days" name="no_of_days" placeholder="No of Days" type="number">
+                                <div class="form-group col-md-12">
+                                    <label for="number">Day Title</label> <input class="form-control" id="pack_title" name="pack_title" placeholder="Day Title" />
                                 </div>
-                                <div class="form-group col-md-4">
-                                    <label for="number"></label>Package cost <input class="form-control" id="package_cost" placeholder="Package cost " type="number" name="package_cost">
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="number"></label>No of Nights <input class="form-control" id="no_of_nights" readonly placeholder="No of Nights" type="number" name="no_of_nights">
+                                <div class="form-group col-md-12">
+                                    <label for="number"></label>Day Description <textarea class="form-control" id="pack_desc" placeholder="Day Description " name="pack_desc"></textarea>
                                 </div>
                             </div>
 
                             <input type="hidden" name="filename" value="insert_package" />
                             <div class="form-group" >
                             
-                                <button class="btn btn-primary" id="btn_save_package_details" type="submit"  name="submit">Submit</button>
+                                <button class="btn btn-primary" id="btn_update_package_description" type="submit"  name="submit">Update Package Desciprtion</button>
                                 </div>
                                 
                         </form>
@@ -95,16 +100,11 @@ require_once('../includes/header.php'); ?>
                       Edit
                 </button>
                 <br>
-                <button  id="<?php echo $row['id'];?>"  class="btn btn-danger btnDeletepackage" onclick="confirm('Are you sure you want to delete this package')" value="<?php echo $row['id'];?>" id="btnDelete">Delete</button>
-                <br>
-                <a href="manage_package_description.php?p_id=<?php echo $row['id'];?>&p_name=<?php echo $row['package_name']?>" class="btn btn-warning ">
-                      Assign
-                </a>
+                <button  id="<?php echo $row['id'];?>"  class="btn btn-danger btnDeletepackage" onclick="confirm('Are you sure you want to delete this package')" value="<?php echo $row['id'];?>" id="btnDelete">Delete</a>
+                
          </td>
-         <td> 
-
-            </td>
-</tr><?php }?>
+    </tr>
+<?php }?>
 
                             </tbody>
                         </table>
