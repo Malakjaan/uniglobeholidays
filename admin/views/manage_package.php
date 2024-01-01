@@ -100,10 +100,11 @@ require_once('../includes/header.php'); ?>
                 <a href="manage_package_description.php?p_id=<?php echo $row['id'];?>&p_name=<?php echo $row['package_name']?>" class="btn btn-warning ">
                       Assign
                 </a>
+            <br>
+            <a href="manage_package_include_exclude.php?p_id=<?php echo $row['id'];?>&p_name=<?php echo $row['package_name']?>" class="btn btn-info ">
+                      Assign Inc/Exc
+                </a>
          </td>
-         <td> 
-
-            </td>
 </tr><?php }?>
 
                             </tbody>

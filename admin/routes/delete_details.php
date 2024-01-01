@@ -32,6 +32,17 @@
                 echo mysqli_error($dbcon);
             }
     
+    }else if($_POST["filename"]=="delete_contact"){
+        $id = $_POST['contact_id'];
+
+        $query = "DELETE FROM  tbl_contact WHERE id = $id";
+        $result = mysqli_query($dbcon, $query);
+            if($result) {
+                echo 200;
+            } else {
+                echo mysqli_error($dbcon);
+            }
+    
     }
 
 

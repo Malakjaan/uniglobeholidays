@@ -44,7 +44,7 @@
                         <a href=""> Manage Contact </a>
                         <ul>
                             <li> <a href="../views/manage_contact.php"> Add Contact </a> </li>
-                            <li> <a href="../views/viewcontact_details.php"> View Contact </a> </li>
+                            <li> <a href="../views/view_contact_details.php"> View Contact </a> </li>
                         </ul>
                          
                     </li>

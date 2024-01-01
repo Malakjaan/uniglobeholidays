@@ -38,5 +38,14 @@ if(isset($_POST['filename']) && $_POST['filename'] == 'insert_package') {
             echo mysqli_error($dbcon); 
         }
     }
+} else if(isset($_POST['filename']) && $_POST['filename'] == 'insert_inc_exc') {
+        $p_id  = $_POST['pid'];
+        $a_i_e =  $_POST['isie'];
+
+        foreach($_POST['incexc'] as $x) {
+            $query = "INSERT INTO tbl_assign_inc_exc(p_id, p_i_e, is_inc_exc) VALUES($p_id, $x, $a_i_e)";
+            $run = mysqli_query($dbcon, $query);
+        }
+        echo 200;
 }
 ?>

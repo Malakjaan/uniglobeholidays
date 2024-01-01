@@ -14,42 +14,41 @@ require_once('../includes/header.php'); ?>
     <div class="row" STYLE="POSITION: absolute;TOP: 60PX;">
                 <div class="col-md-12">
                     <div class="heading">
-                        <h2 style="color: black"> Add Package Details Here </h2>
-                        <form style="width:720px; color: black" enctype="multipart/form-data"method="post" id="frmPackageDescription">
+                        <h2 style="color: black"> Add Package Includes Excludes  Here </h2>
+                        <form style="width:720px; color: black" enctype="multipart/form-data"method="post"  id="frmPackageDescription">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="name">Package Name</label> <input class="form-control" id="package_name" value="<?php echo $p_name;?>" readonly name="package_name" placeholder="Package Name" type="text">
+
+                                    <input type="hidden" name="p_id" value="<?php echo $p_id;?>" id="p_id" />
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="name">Package Type</label> 
-                                    <select style="color:black" class="form-control" id="day_number" type="text" name="day_number">
-                                        <option>Choose Day Number</option>
-                                        <?php
-                                            $get_type = "SELECT day_no FROM tbl_package_desc WHERE p_id = $p_id AND is_filled = 0";
-                                            $run_type = mysqli_query($dbcon, $get_type);
-                                            while ($row = mysqli_fetch_assoc($run_type)) {
-                                        ?>
-                                            <option style="color: black" value="<?php echo $row['day_no']?>"><?php echo $row['day_no']; ?></option>
-                                        <?php } ?>
+                                    <label for="name">Include / Exclude</label> 
+                                    <select style="color:black" class="form-control" id="inc_exc" name="inc_exc">
+                                        <option>Choose an Option</option>
+                                            <option style="color: black" value="0"> Include </option>
+                                            <option style="color: black" value="1"> Exclude </option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="inputAddress">Choose Package Image</label> <input class="form-control" id="image" name="image" type="file" />
+                                <!-- <label for="inputAddress">Choose Package Image</label>  -->
+                                <?php
+                                    $get_incexc = "SELECT * FROM tbl_inc_exc";
+                                    $run_incexc = mysqli_query($dbcon, $get_incexc);
+                                    while($row_incexc = mysqli_fetch_array($run_incexc)) {
+                                ?>
+                                <input type="checkbox" value="<?php echo $row_incexc['id'];?>" name="incexc[]" id="inxexc" /> <span style="color: black"> <?php echo $row_incexc['title'];?> </span>
+                                        <br />
+                                <?php } ?>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-12">
-                                    <label for="number">Day Title</label> <input class="form-control" id="pack_title" name="pack_title" placeholder="Day Title" />
-                                </div>
-                                <div class="form-group col-md-12">
-                                    <label for="number"></label>Day Description <textarea class="form-control" id="pack_desc" placeholder="Day Description " name="pack_desc"></textarea>
-                                </div>
-                            </div>
-
+                          
                             <input type="hidden" name="filename" value="insert_package" />
                             <div class="form-group" >
                             
-                                <button class="btn btn-primary" id="btn_update_package_description" type="submit"  name="submit">Update Package Desciprtion</button>
+                                <button class="btn btn-primary" style="display:none" id="btn_add_inc_exc" type="submit"  name="submit">
+                                    <span id="myspan"> </span>
+                                </button>
                                 </div>
                                 
                         </form>

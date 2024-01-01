@@ -65,6 +65,48 @@
             } else {
                 echo mysqli_error($dbcon);
             }
-    }
+    }elseif($_POST["filename"]=="update_contact"){
+    $id = $_POST['contact_id'];
+    $pem = $_POST['pemail'];
+    $sem = $_POST['semail'];
+    $iad = $_POST['iaddress'];
+    $nad = $_POST['saddress'];
+    $pcon = $_POST['pcontact'];
+    $scon = $_POST['scontact'];
+
+    $query = "UPDATE tbl_contact SET pemail='$pem', semail = '$sem', paddress = '$iad', saddress = '$nad' , pcontact = '$pcon', scontact = '$scon' WHERE id = $id";
+    $result = mysqli_query($dbcon, $query);
+        if($result) {
+            echo 200;
+        } else {
+            echo mysqli_error($dbcon);
+        }
+    } 
+    elseif($_POST["filename"]=="update_package_description"){
+        $id = $_POST['package_id`'];
+        $pn1 = $_POST['package_name1'];
+        $pt1 = $_POST['package_type1'];
+        $nd1 = $_POST['no_of_days1'];
+        $nn1 = $_POST['no_of_nights1'];
+        $pc1 = $_POST['package_cost1'];
+
+        $temp_name = $_FILES['myImage1']['tmp_name'];
+        $org_name = $_FILES['myImage1']['name'];
+        $size = $_FILES['myImage1']['size'];
+        $path = '../../assets/images/packages/' . $org_name;
+
+        if($size > 0) {
+            move_uploaded_file($temp_name,$path);
+            $query = "UPDATE tbl_package_desc SET package_name1='$pn1', package_type1 = '$pt1', no_of_days1 = '$nd1', no_of_nights1 = '$nn1', package_cost1 = '$pc1', image='$org_name' WHERE id = $id &&package_type1=$package_type";
+            $result = mysqli_query($dbcon, $query);
+        } else {
+            $query = "UPDATE tbl_package_desc  SET package_name1='$pn1', package_type1 = '$pt1', no_of_days1 = '$nd1', no_of_nights1 = '$nn1', package_cost1 = '$pc1' WHERE id = $id";
+            $result = mysqli_query($dbcon, $query);
+        }
+            
+            if($result) {
+                echo 200;
+            } else {
+                echo mysqli_error($dbcon);
+            }}
 ?>
-<?php

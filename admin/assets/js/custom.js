@@ -1,18 +1,18 @@
-$( document ).ready(function() {                 //run once the entire page(image,iframe) not just dom
+$( document ).ready(function() {                
         $('#btn_save_contact_details').on('click', function(e){
-            e.preventDefault(); //not reload the page
-            let x = $('#pemail').val(); //return value of attributes for selected elements
+            e.preventDefault(); 
+            let x = $('#pemail').val(); 
             let y = $('#semail').val();
             let z = $('#iaddress').val();
             let u = $('#saddress').val();
             let v = $('#pcontact').val();
             let w = $('#scontact').val();
             
-            $.ajax({                     //to perform ajax (request)
+            $.ajax({                    
                 url:'../routes/insert_contact.php',
                 method: 'post',
                 data: {pemail:x, semail:y, iaddress:z, saddress:u, pcontact:v, scontact:w},
-                success:function(data){    //request 
+                success:function(data){    
                     if(data == 200) {
                         alert('Contact Details Added Successfully');
                     } else {
@@ -21,6 +21,74 @@ $( document ).ready(function() {                 //run once the entire page(imag
                 }
             });
         });
+       
+          
+            $('#editcontact').on('click', function(){
+                var id = $(this).attr("id"); 
+                var filename = "edit_contact"; 
+                
+                $.ajax({
+                    url:"../routes/edit_details.php",
+                    method:"post",
+                    dataType:'JSON',
+                    data: {contact_id: id,filename:filename}, 
+                    success: function(data){
+        
+                        $('#p_email1').val(data['pemail']);
+                        $('#s_email1').val(data['semail']);
+                        $('#p_address1').val(data['iaddress']);
+                        $('#s_address1').val(data['saddress']);
+                        $('#p_contact1').val(data['pcontact']);
+                        $('#s_contact1').val(data['scontact']);
+                        $('#contact_id').val(data['id']);
+                    }
+                });
+        
+            });
+            $('#frmeditcontact').on('submit', function(e){
+        
+                e.preventDefault();
+                var filename = "update_contact"; 
+                
+                $.ajax({
+                        url:'../routes/update_details.php',
+                        method: 'post',
+                        data: $('#frmeditcontact').serialize(),  
+                        success:function(data){
+                            if(data == 200) {
+                                alert('Details Updated Successfully');
+                                window.location.href = window.location.href
+                            } else {
+                                alert('Failed to update details. Please try again later');
+                                window.location.href = window.location.href
+                            }
+                        }
+                    });
+                });
+        
+        
+                $('.btnDeletecontact').on('click', function(){
+                    var id = $(this).attr("id");  
+                    var filename = "delete_contact";
+                    $.ajax({
+                        url:"../routes/delete_details.php",
+                        method: 'post',
+                        dataType:'JSON',
+                        data: {contact_id: id,filename:filename},                
+                        success:function(data){
+                            if(data == 200) {
+                                                alert('contact Deleted Successfully');
+                                                window.location.href = window.location.href
+                                            } else {
+                                                alert('Failed to contact details. Please try again later');
+                                                window.location.href = window.location.href
+                                            }
+                        }
+                    });
+                    });
+                
+
+
 
         $('#btnEditFeedback').on('click', function(){
             var id = $('#btnEditFeedback').attr("data-id"); 
@@ -245,11 +313,6 @@ $.ajax({
 
 
 
-
-
-
-
-
                                
        
         $('.btnEditSlider').on('click', function(){
@@ -410,5 +473,43 @@ $.ajax({
             var tmppath = URL.createObjectURL(event.target.files[0]);
             $('#myImage1').attr('src',tmppath);
         });
+
+
+        $('#inc_exc').on('change', function(){
+            $('#btn_add_inc_exc').css('display', 'block');
+            if($(this).val() == 0) {
+                $('#myspan').text('Add Package Includes')
+            } else {
+                $('#myspan').text('Add Package Excludes')
+            }
+        });
+
+        $('#btn_add_inc_exc').on('click', function(e){
+            e.preventDefault();
+            var filename = "insert_inc_exc";
+            var val = [];
+            $(':checkbox:checked').each(function(i){
+                val[i] = $(this).val();
+            });
+            
+            var p_id =  $('#p_id').val();
+            var is_i_e =  $('#inc_exc').val();
+
+            $.ajax({
+                url:'../routes/insert_details.php',
+                method: 'post',
+                data: {pid:p_id, incexc:val, isie:is_i_e,filename:filename},
+                success:function(data){
+                    if(data == 200) {
+                        alert('Package Include Added Successfully');
+                        window.location.href = window.location.href
+                    } else {
+                        alert('Failed to add includes details. Please try again later');
+
+                    }
+                }
+            });
+        });
+
     });
        

@@ -31,6 +31,16 @@ if(isset($_POST['filename']) && $_POST['filename'] == 'edit_feedback') {
         } else {
             echo 201;
         }
+    }else if($_POST["filename"] == "edit_contact") { 
+        $id = $_POST['contact_id'];
+        $query ="SELECT * FROM tbl_contact WHERE id = $id";
+        $result = mysqli_query($dbcon, $query);
+        $row = mysqli_fetch_assoc($result);
+        if($result) {
+            echo json_encode($row);
+        } else {
+            echo 201;
+        }
     }
 
 
