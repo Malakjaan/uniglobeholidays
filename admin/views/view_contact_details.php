@@ -33,7 +33,7 @@
          <td><?php echo $row['scontact'];?></td>
          
          <td>
-         <button id="<?php echo $row['id'];?>" type="button" class="btn btn-primary btnEditcontact" data-toggle="modal"  data-target="#editcontact" >
+         <button id="<?php echo $row['id'];?>" type="button" class="btn btn-primary btnEditcontact" data-toggle="modal"  data-target="#editcontact1" >
                       Edit
                 </button>
 
@@ -49,7 +49,7 @@
             </div>
             <?php require_once('../includes/footer.php'); ?>     
 
-<div class="modal fade" id="editcontact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editcontact1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -59,7 +59,7 @@
         </button>
       </div>
       <div class="modal-body">
-      <form id="frmeditcontact"   method="post" style="width: 475px;">
+      <form id="frmeditcontact"  method="post" style="width: 475px;">
       <div class="form-row">
                            <div class="form-group col-md-4">
 

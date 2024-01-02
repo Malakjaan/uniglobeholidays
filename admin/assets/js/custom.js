@@ -23,28 +23,30 @@ $( document ).ready(function() {
         });
        
           
-            $('#editcontact').on('click', function(){
-                var id = $(this).attr("id"); 
-                var filename = "edit_contact"; 
-                
-                $.ajax({
-                    url:"../routes/edit_details.php",
-                    method:"post",
-                    dataType:'JSON',
-                    data: {contact_id: id,filename:filename}, 
-                    success: function(data){
-        
-                        $('#p_email1').val(data['pemail']);
-                        $('#s_email1').val(data['semail']);
-                        $('#p_address1').val(data['iaddress']);
-                        $('#s_address1').val(data['saddress']);
-                        $('#p_contact1').val(data['pcontact']);
-                        $('#s_contact1').val(data['scontact']);
-                        $('#contact_id').val(data['id']);
-                    }
-                });
-        
+        $('.btnEditcontact').on('click', function(e){
+            e.preventDefault();
+            var id = $(this).attr("id"); 
+            var filename = "edit_contact"; 
+            
+            $.ajax({
+                url:"../routes/edit_details.php",
+                method:"post",
+                dataType:'JSON',
+                data: {contact_id: id,filename:filename}, 
+                success: function(data){
+    
+                    $('#p_email1').val(data['pemail']);
+                    $('#s_email1').val(data['semail']);
+                    $('#i_address1').val(data['paddress']);
+                    $('#s_address1').val(data['saddress']);
+                    $('#p_contact1').val(data['pcontact']);
+                    $('#s_contact1').val(data['scontact']);
+                    $('#contact_id').val(data['id']);
+                }
             });
+    
+        });
+            
             $('#frmeditcontact').on('submit', function(e){
         
                 e.preventDefault();
@@ -85,28 +87,89 @@ $( document ).ready(function() {
                                             }
                         }
                     });
-                    });
+                });
                 
+                    $('#btn_save_feedback_details').on('click', function(e){
+                        e.preventDefault(); 
+                        let a = $('#name').val(); 
+                        let b = $('#email').val();
+                        let c = $('#comment').val();
+                        let d = $('#rating').val();
+                        
+                        $.ajax({                    
+                            url:'../routes/insert_feedback.php',
+                            method: 'post',
+                            data: {name:a, email:b, comment:c, rating:d},
+                            success:function(data){    
+                                if(data == 200) {
+                                    alert('Feedback Details Added Successfully');
+                                } else {
+                                    alert('Failed to add Feedback details. Please try again later');
+                                }
+                            }
+                        });
+                    });
 
+                    $('.btnEditFeedback').on('click', function(){
+                        var id = $(this).attr("id"); 
+                        var filename = "edit_feedback"; 
+                        $.ajax({
+                            url:"../routes/edit_details.php",
+                            method:"post",
+                            dataType: 'JSON',
+                            data:{feedback_id:id, filename:filename},
+                            success: function(data){
+                                $('#name1').val(data['name']);
+                                $('#email1').val(data['email']);
+                                $('#comment1').val(data['comment']);
+                                $('#rating1').val(data['rating']);
+                                $('#feedback_id').val(data['id']);
+                            }
+                        });
+                    });
+        
 
+                    $('#frmEditFeedback').on('submit', function(e){
 
-        $('#btnEditFeedback').on('click', function(){
-            var id = $('#btnEditFeedback').attr("data-id"); 
-            $.ajax({
-                url:"../routes/edit_details.php",
-                method:"post",
-                dataType: 'JSON',
-                data:{feedback_id:id},
-                success: function(data){
-                    $('#name1').val(data['name']);
-                    $('#email1').val(data['email']);
-                    $('#comment1').val(data['comment']);
-                    $('#rating1').val(data['rating']);
-                    $('#feedback_id').val(data['id']);
-                }
-            });
-        });
-
+                        e.preventDefault();
+                        var filename = "update_feedback";
+            
+                        $.ajax({
+                            url:'../routes/update_details.php',
+                            method: 'post',                            
+                            data: $('#frmEditFeedback').serialize(),            success:function(data){
+                                if(data == 200) {
+                                    alert('Details Updated Successfully');
+                                    window.location.href = window.location.href
+                                } else {
+                                    alert('Failed to update details. Please try again later');                
+                                    window.location.href = window.location.href
+                                }
+                            }
+                        });
+                    });
+            
+                    $('.btnDeletefeedback').on('click', function(){
+                        var id = $(this).attr("id");  
+                        var filename = "delete_feedback";
+                        $.ajax({
+                            url:"../routes/delete_details.php",
+                            method:"post",
+                            dataType: 'JSON',                
+                            data:{feedbackId:id, filename:filename},
+                            success: function(data){
+                                if(data == 200) {
+                                        alert('Feedback Deleted Successfully');
+                                        window.location.href = window.location.href
+                                    } else {
+                                        alert('Failed to delete Feedback. Please try again later');
+                                        window.location.href = window.location.href
+                                    }
+                            }
+                        });
+            
+                    });
+            
 
 
         $('#frmSlider').on('submit', function(e){
@@ -379,49 +442,6 @@ $.ajax({
                     }
                 });
             });
-
-        $('#frmEditFeedback').on('submit', function(e){
-
-            e.preventDefault();
-            var formData = new FormData(this);
-            var filename = "update_feedback";
-
-            $.ajax({
-                url:'../routes/update_details.php',
-                method: 'post',
-                
-                data: $('#frmEditFeedback').serialize(),                success:function(data){
-                    if(data == 200) {
-                        alert('Details Updated Successfully');
-                        window.location.href = window.location.href
-                    } else {
-                        alert('Failed to update details. Please try again later');                
-                        window.location.href = window.location.href
-                    }
-                }
-            });
-        });
-
-        $('.btnDeletefeedback').on('click', function(){
-            var id = $(this).attr("id");  
-            var filename = "delete_feedback";
-            $.ajax({
-                url:"../routes/delete_details.php",
-                method:"post",
-                dataType: 'JSON',                
-                data:{feedbackId:id, filename:filename},
-                success: function(data){
-                    if(data == 200) {
-                            alert('Feedback Deleted Successfully');
-                            window.location.href = window.location.href
-                        } else {
-                            alert('Failed to delete Feedback. Please try again later');
-                            window.location.href = window.location.href
-                        }
-                }
-            });
-
-        });
 
        
         

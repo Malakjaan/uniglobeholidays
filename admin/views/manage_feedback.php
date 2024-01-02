@@ -23,7 +23,7 @@
 
                             <div class="form-group col-md-8">
                                     <label for="inputContact">Your Rating</label>
-                                    <select name="rating" class="form-control" >
+                                    <select name="rating" id="rating" class="form-control" >
                                         <option value="1"> 1 Star </option>
                                         <option value="2"> 2 Star</option>
                                         <option value="3"> 3 Star</option>
@@ -96,7 +96,7 @@
                 <a href="?user_id=<?php echo $row['id'];?>&status=0" name="btnEdit" style="padding:10px;text-decoration:none; font-size:12px; font-weight:bold" class="btn btn-sm btn-danger"> In-Activate </a><br>
                 <?php } ?>
                 <br>
-                <button data-id="<?php echo $row['id'];?>" id="btnEditFeedback" type="button" class="btn btn-primary" data-toggle="modal" data-target="#editFeedback">
+                <button id="<?php echo $row['id'];?>" type="button" class="btn btn-primary btnEditFeedback" data-toggle="modal" data-target="#editFeedback">
                       Edit
                 </button>
                 <br>

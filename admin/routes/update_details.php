@@ -83,24 +83,24 @@
         }
     } 
     elseif($_POST["filename"]=="update_package_description"){
-        $id = $_POST['package_id`'];
-        $pn1 = $_POST['package_name1'];
-        $pt1 = $_POST['package_type1'];
-        $nd1 = $_POST['no_of_days1'];
-        $nn1 = $_POST['no_of_nights1'];
-        $pc1 = $_POST['package_cost1'];
+        $id = $_POST['p_id`'];
+        $dt = $_POST['day_title'];
+        $dd = $_POST['day_desc'];
+        $dn = $_POST['day_no'];
+        $if = $_POST['is_filled'];
+        $ao = $_POST['added_on'];
 
-        $temp_name = $_FILES['myImage1']['tmp_name'];
-        $org_name = $_FILES['myImage1']['name'];
-        $size = $_FILES['myImage1']['size'];
+        $temp_name = $_FILES['image']['tmp_name'];
+        $org_name = $_FILES['image']['name'];
+        $size = $_FILES['image']['size'];
         $path = '../../assets/images/packages/' . $org_name;
 
         if($size > 0) {
             move_uploaded_file($temp_name,$path);
-            $query = "UPDATE tbl_package_desc SET package_name1='$pn1', package_type1 = '$pt1', no_of_days1 = '$nd1', no_of_nights1 = '$nn1', package_cost1 = '$pc1', image='$org_name' WHERE id = $id &&package_type1=$package_type";
+            $query = "UPDATE tbl_package_desc SET day_title='$dt', day_desc = '$dd', day_no = '$dn', is_filled = '$if', added_on = '$ao', image='$org_name' WHERE id = $id && package_type=$package_type";
             $result = mysqli_query($dbcon, $query);
         } else {
-            $query = "UPDATE tbl_package_desc  SET package_name1='$pn1', package_type1 = '$pt1', no_of_days1 = '$nd1', no_of_nights1 = '$nn1', package_cost1 = '$pc1' WHERE id = $id";
+            $query = "UPDATE tbl_package_desc SET day_title='$dt', day_desc = '$dd', is_filled = '$if', added_on = '$ao' WHERE id = $id";
             $result = mysqli_query($dbcon, $query);
         }
             
@@ -108,5 +108,6 @@
                 echo 200;
             } else {
                 echo mysqli_error($dbcon);
-            }}
+            }
+        }
 ?>

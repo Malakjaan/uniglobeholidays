@@ -96,12 +96,9 @@ require_once('../includes/header.php'); ?>
         </td>
             </td>         
          <td style="width:12%">
-         <button id="<?php echo $row['id'];?>" type="button" class="btn btn-primary btnEditPackage" data-toggle="modal"  data-target="#editPackage">
+         <button id="<?php echo $row['id'];?>" type="button" class="btn btn-primary btnedit_package_desc" data-toggle="modal"  data-target="#edit_package_desc">
                       Edit
                 </button>
-                <br>
-                <button  id="<?php echo $row['id'];?>"  class="btn btn-danger btnDeletepackage" onclick="confirm('Are you sure you want to delete this package')" value="<?php echo $row['id'];?>" id="btnDelete">Delete</a>
-                
          </td>
     </tr>
 <?php }?>
@@ -138,7 +135,7 @@ require_once('../includes/header.php'); ?>
 
 
 
-<div class="modal fade" id="editPackage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="edit_package_desc" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -148,7 +145,7 @@ require_once('../includes/header.php'); ?>
         </button>
       </div>
       <div class="modal-body">
-      <form id="frmeditPackage" method="post" style="width: 475px;">
+      <form id="frmedit_package_desc" method="post" style="width: 475px;">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="name1">Package Name</label> <input class="form-control" id="package_name1" name="package_name" placeholder="Package Name" type="text">
@@ -198,7 +195,7 @@ require_once('../includes/header.php'); ?>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button class="btn btn-primary" id="btn_update_package_details" type="submit">update Package</button>
+                <button class="btn btn-primary" id="btn_update_package_details" type="submit">update Package Desciprtion</button>
             </div>
         </form> 
             
