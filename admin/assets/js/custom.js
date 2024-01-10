@@ -88,6 +88,9 @@ $( document ).ready(function() {
                         }
                     });
                 });
+
+
+            
                 
                     $('#btn_save_feedback_details').on('click', function(e){
                         e.preventDefault(); 
@@ -531,5 +534,208 @@ $.ajax({
             });
         });
 
-    });
+        $('#frmeditdescription').on('submit', function(e){
+            e.preventDefault();
+            var filename = "update_package_description"; 
+            
+            $.ajax({
+                    url:'../routes/update_details.php',
+                    method: 'post',
+                    data: $('#frmeditdescription').serialize(),  
+                    success:function(data){
+                        if(data == 200) {
+                            alert('Details Updated Successfully');
+                            window.location.href = window.location.href
+                        } else {
+                            alert('Failed to update description details. Please try again later');
+                            window.location.href = window.location.href
+                        }
+                    }
+                });
+            });
+            $('.btnEdit_package_desc').on('click', function(e){
+                e.preventDefault();
+                var id = $(this).attr("id"); 
+                var filename = "edit_description"; 
+                
+                $.ajax({
+                    url:"../routes/edit_details.php",
+                    method:"post",
+                    dataType:'JSON',
+                    data: {p_id: id,filename:filename}, 
+                    success: function(data){
+                        $('#p_d_id').val(data['id']);
+                        $('#day_title1').val(data['day_title']);
+                        $('#day_desc1').val(data['day_desc']);
+                        $('#p_id').val(data['id']);
+                    }
+                });
+            });
+            $('#frmeditdescriptionbutton').on('submit', function(e){
+                e.preventDefault();
+                var filename = "update_package_description_button"; 
+                
+                $.ajax({
+                        url:'../routes/update_details.php',
+                        method: 'post',
+                        data: $('#frmeditdescriptionbutton').serialize(),  
+                        success:function(data){
+                            if(data == 200) {
+                                alert('Details Updated Successfully');
+                                window.location.href = window.location.href
+                            } else {
+                                alert('Failed to update these description details. Please try again later');
+                                window.location.href = window.location.href
+                            }
+                        }
+                    });
+                });
+                $('.btnDeletedesc').on('click', function(){
+                    var id = $(this).attr("id");  
+                    var filename = "delete_desc";
+                    $.ajax({
+                        url:"../routes/delete_details.php",
+                        method: 'post',
+                        dataType:'JSON',
+                        data: {p_id: id,filename:filename},                
+                        success:function(data){
+                            if(data == 200) {
+                                alert('Description Deleted Successfully');
+                                window.location.href = window.location.href
+                            } else {
+                                alert('Failed to delete Description details. Please try again later');
+                                window.location.href = window.location.href
+                            }
+                        }
+                    });
+                });
+
+
+
+
+
+                $('#frmDestination').on('submit', function(e){
+                    e.preventDefault();
+                    var formData = new FormData(this);
+                    var filename = "insert_destination";
+                    var pic_size = $('#image')[0].files[0].size;//get file size 
+                    var pic_type = $('#image')[0].files[0].type;
+                    
+                    if(pic_size > 2035597) {
+                        alert('Image size is too large. Please upload image having size less than 2MB');
+                        $('#image').css({border: "2px solid yellow"});
+                        return 0;
+                    } else {
+                        if(pic_type == 'image/jpeg' || pic_type == 'image/png' || pic_type == 'image/jpg') {
+                            $('#image').css({border: "2px solid green"});
+                        } else {
+                            alert('Image format is invalid. Please upload image having png/jpg extension');
+                            $('#image').css({border: "2px solid red"});
+                            return 0;
+                        }
+                    }
+                    $.ajax({
+                            url:'../routes/insert_details.php',
+                            method: 'post',
+                            data: formData,
+                            cache:false,
+                            contentType: false,
+                            processData: false, 
+                            success:function(data){
+                                if(data == 200) {
+                                    alert('Destination Added Successfully');
+                                    window.location.href = window.location.href
+                                } else {
+                                    alert('Failed to add Destination details. Please try again later');
+                                    window.location.href = window.location.href
+                                }
+                            }
+                        });
+                    });
+                    $('.btnEditDestination').on('click', function(){
+               
+                        var id = $(this).attr("id");  
+                        var filename = "edit_destination"; 
+                        
+                        $.ajax({
+                            url:"../routes/edit_details.php",
+                            method:"post",
+                            dataType: 'JSON',                
+                            data:{destination_id:id, filename:filename},
+                            success: function(data){
+        
+                                $('#destination_name1').val(data['destination_name']);
+                                $('#destination_location1').val(data['destination_location']);
+                                $('#myImage11').attr('src', '../../assets/images/packages/' + data['image']);
+                                $('#destination_desc1').val(data['destination_desc']);
+                                
+                                $('#destination_id').val(data['id']);
+                            }
+                        });
+        
+                    });
+
+                    $('.btnDeletedestination').on('click', function(){
+                        var id = $(this).attr("id");
+                        var filename = "delete_destination";
+                        $.ajax({
+                            url:"../routes/delete_details.php",
+                            method: 'post',
+                            dataType:'JSON',
+                            data: {destination_id: id,filename:filename},                
+                            success:function(data){
+                                if(data == 200) {
+                                                    alert('Destination Deleted Successfully');
+                                                    window.location.href = window.location.href
+                                                } else {
+                                                    alert('Failed to delete Destination. Please try again later');
+                                                    window.location.href = window.location.href
+                                                }
+                            }
+                        });
+                        });
+        
+                        $('#frmeditDestination').on('submit', function(e){
+
+                            e.preventDefault();
+                            var formData = new FormData(this);
+                            var filename = "update_destination";
+                            
+                            $.ajax({
+                                    url:'../routes/update_details.php',
+                                    method: 'post',
+                                    data: formData,
+                                    cache:false,
+                                    contentType: false,
+                                    processData: false, 
+                                    success:function(data){
+                                        if(data == 200) {
+                                            alert('Destination Details Updated Successfully');
+                                            window.location.href = window.location.href
+                                        } else {
+                                            alert('Failed to update Destination details. Please try again later');
+                                            window.location.href = window.location.href
+                                        }
+                                    }
+                                });
+                            });
+                            $('#image').on('change', function(){
+                                var tmppath = URL.createObjectURL(event.target.files[0]);
+                                $('#myImage11').attr('src',tmppath);
+                            });
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+        });
        

@@ -44,6 +44,30 @@
             }
     
     }
+    else if($_POST["filename"]=="delete_desc"){
+        $id = $_POST['p_id'];
+
+        $query = "DELETE FROM  tbl_package_desc WHERE id = $id";
+        $result = mysqli_query($dbcon, $query);
+            if($result) {
+                echo 200;
+            } else {
+                echo mysqli_error($dbcon);
+            }
+    
+    }
+    else if($_POST["filename"]=="delete_destination"){
+        $id = $_POST['destination_id'];
+
+        $query = "DELETE FROM  tbl_destination WHERE id = $id";
+        $result = mysqli_query($dbcon, $query);
+            if($result) {
+                echo 200;
+            } else {
+                echo mysqli_error($dbcon);
+            }
+    
+    }
 
 
     

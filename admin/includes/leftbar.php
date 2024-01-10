@@ -67,7 +67,7 @@
                     <li > 
                     <i class="fa fa-car"></i> 
                         
-                    <a href="../views/manage_contact.php"> Manage Destinations </a> </li>
+                    <a href="../views/manage_destinations.php"> Manage Destinations </a> </li>
                     <li >
                     <i class="fa fa-info"></i> 
                         

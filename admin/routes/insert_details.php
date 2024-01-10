@@ -47,5 +47,30 @@ if(isset($_POST['filename']) && $_POST['filename'] == 'insert_package') {
             $run = mysqli_query($dbcon, $query);
         }
         echo 200;
-}
+}else if(isset($_POST['filename']) && $_POST['filename'] == 'insert_destination') {
+    $dn = $_POST['destination_name'];
+    $dl = $_POST['destination_location'];
+    $dd = $_POST['destination_desc'];
+    
+    
+    $temporary_name = $_FILES['image']['tmp_name'];
+    $org_name = $_FILES['image']['name'];
+    $path = '../../assets/images/packages/' . $org_name;
+    $str = explode('.', $org_name);
+    
+
+    
+    if(move_uploaded_file($temporary_name,$path))
+    {
+       $query = "INSERT INTO tbl_destination(destination_name, destination_location,image, destination_desc) 
+       VALUES('$dn', '$dl','$org_name','$dd')";
+        $result = mysqli_query($dbcon, $query);
+        if($result) {
+            echo 200;
+        } else {
+            echo mysqli_error($dbcon); 
+        }
+        
+    }
+} 
 ?>

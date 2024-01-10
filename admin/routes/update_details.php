@@ -14,7 +14,7 @@
         } else {
             echo mysqli_error($dbcon);
         }
-    } elseif($_POST["filename"]=="update_slider"){
+    } else if($_POST["filename"]=="update_slider"){
         $id = $_POST['slider_id'];
         $sh = $_POST['s_headline'];
         $st = $_POST['s_tagline'];
@@ -38,7 +38,7 @@
                 echo mysqli_error( $dbcon);
             }
     }
-    elseif($_POST["filename"]=="update_package"){
+    else if($_POST["filename"]=="update_package"){
         $id = $_POST['package_id'];
         $pn = $_POST['package_name'];
         $pt = $_POST['package_type'];
@@ -65,7 +65,7 @@
             } else {
                 echo mysqli_error($dbcon);
             }
-    }elseif($_POST["filename"]=="update_contact"){
+    }else if($_POST["filename"]=="update_contact"){
     $id = $_POST['contact_id'];
     $pem = $_POST['pemail'];
     $sem = $_POST['semail'];
@@ -82,32 +82,61 @@
             echo mysqli_error($dbcon);
         }
     } 
-    elseif($_POST["filename"]=="update_package_description"){
-        $id = $_POST['p_id`'];
+    else if($_POST["filename"]=="update_package_description"){
+        $id = $_POST['p_id'];
         $dt = $_POST['day_title'];
         $dd = $_POST['day_desc'];
-        $dn = $_POST['day_no'];
-        $if = $_POST['is_filled'];
-        $ao = $_POST['added_on'];
+        $dn = $_POST['day_number'];
 
-        $temp_name = $_FILES['image']['tmp_name'];
-        $org_name = $_FILES['image']['name'];
-        $size = $_FILES['image']['size'];
+        $query = "UPDATE tbl_package_desc SET day_title='$dt', day_desc = '$dd', is_filled = 1, added_on = NOW() WHERE p_id = $id AND day_no = $dn";
+        $result = mysqli_query($dbcon, $query);
+        
+        if($result) {
+            echo 200;
+        } else {
+            echo mysqli_error($dbcon);
+        }
+    }
+    else if($_POST["filename"]=="update_package_description_button"){
+        $id = $_POST['p_id'];
+        $dt = $_POST['day_title'];
+        $dd = $_POST['day_desc'];
+        $pdi = $_POST['p_d_id'];
+
+        $query = "UPDATE tbl_package_desc SET day_title='$dt', day_desc = '$dd', is_filled = 1, added_on = NOW() WHERE p_id = $id AND id = $pdi";
+        $result = mysqli_query($dbcon, $query);
+        
+        if($result) {
+            echo 200;
+        } else {
+            echo mysqli_error($dbcon);
+        }
+    }
+    else if($_POST["filename"]=="update_destination"){
+
+        $id = $_POST['destination_id'];
+        $dn = $_POST['destination_name'];
+        $dl = $_POST['destination_location'];
+        $dd = $_POST['destination_desc'];
+
+        $temp_name = $_FILES['imageModal1']['tmp_name'];
+        $org_name = $_FILES['imageModal1']['name'];
+        $size = $_FILES['imageModal1']['size'];
         $path = '../../assets/images/packages/' . $org_name;
 
         if($size > 0) {
             move_uploaded_file($temp_name,$path);
-            $query = "UPDATE tbl_package_desc SET day_title='$dt', day_desc = '$dd', day_no = '$dn', is_filled = '$if', added_on = '$ao', image='$org_name' WHERE id = $id && package_type=$package_type";
+            $query = "UPDATE tbl_destination SET destination_name='$dn', destination_location = '$dl', destination_desc = '$dd', image='$org_name' WHERE id = $id";
             $result = mysqli_query($dbcon, $query);
         } else {
-            $query = "UPDATE tbl_package_desc SET day_title='$dt', day_desc = '$dd', is_filled = '$if', added_on = '$ao' WHERE id = $id";
+            $query = "UPDATE tbl_destination  SET destination_name='$dn', destination_location = '$dl', destination_desc = '$dd' WHERE id = $id";
             $result = mysqli_query($dbcon, $query);
         }
             
-            if($result) {
-                echo 200;
-            } else {
-                echo mysqli_error($dbcon);
-            }
+        if($result) {
+            echo 200;
+        } else {
+            echo mysqli_error($dbcon);
         }
+    }
 ?>

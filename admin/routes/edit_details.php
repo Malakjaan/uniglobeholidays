@@ -43,7 +43,7 @@ if(isset($_POST['filename']) && $_POST['filename'] == 'edit_feedback') {
             echo 201;
         }
     }
-    else if($_POST["filename"] == "edit_package_desc") { 
+    else if($_POST["filename"] == "edit_description") { 
         $id = $_POST['p_id'];
         $query ="SELECT * FROM tbl_package_desc WHERE id = $id";
         $result = mysqli_query($dbcon, $query);
@@ -54,7 +54,17 @@ if(isset($_POST['filename']) && $_POST['filename'] == 'edit_feedback') {
         } else {
             echo 201;
         }
-    }
+    } else if($_POST["filename"] == "edit_destination") { 
+        $id = $_POST['destination_id'];
+        $query ="SELECT * FROM tbl_destination WHERE id = $id";
+        $result = mysqli_query($dbcon, $query);
 
+        $row = mysqli_fetch_assoc($result);
+        if($result) {
+            echo json_encode($row);
+        } else {
+            echo 201;
+        }
+    }
 
 ?>
