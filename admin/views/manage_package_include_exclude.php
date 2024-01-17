@@ -11,7 +11,7 @@ require_once('../../config/connection.php');
 require_once('../includes/header.php'); ?>
 
 
-    <div class="row" STYLE="POSITION: absolute;TOP: 60PX;">
+    <div class="row" STYLE="POSITION: relative;TOP: 60PX;">
                 <div class="col-md-12">
                     <div class="heading">
                         <h2 style="color: black"> Add Package Includes Excludes  Here </h2>
@@ -56,66 +56,124 @@ require_once('../includes/header.php'); ?>
                 </div>
             
 
+                </div>
 
 
 
-<div class="row" STYLE="POSITION: relative; TOP: 30px;">
-                <div class="col-md-12">
-                    <div class="heading">
-                        <h2 style="color: black"> View Package Details </h2>
-                        <table class="table">
-                        <thead class="thead-dark">
-                                <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Package Name</th>
-                                <th scope="col">Package Type</th>
-                                <th scope="col">Package image</th>
-                                <th scope="col">No of Days</th>
-                                <th scope="col">No of Nights</th>
-                                <th scope="col">Package cost</th>
-                                <th scope="col">Action </th>
-                                </tr>
-                            </thead>
-        <tbody><?php
-        require_once('../../config/connection.php');
-        $query ="SELECT * FROM tbl_package";
-        $result = mysqli_query($dbcon, $query);  
-        while ($row = mysqli_fetch_assoc($result)) {    
-       ?>
-       <tr>
+                <div class="row" STYLE="POSITION: relative; TOP: 60px;">
+                    <div class="col-md-12">
 
-         <td style="width:5%" ><?php echo $row['id'];?></td>
-         <td style="width:15%"><?php echo $row['package_name'];?></td>
-         <td style="width:14%"><?php echo $row['package_type'];?></td>
-         <td style="width:14%"><img style="width:150px; height:150px;" src="../../assets/images/packages/<?php echo $row['image'];?>" /></td>
-         <td style="width:14%"><?php echo $row['no_of_days'];?></td>
-         <td style="width:14%"><?php echo $row['no_of_nights'];?></td>
-         <td style="width:30%"><?php echo $row['package_cost'];?></td>
-         <td style="width:11%">
-        </td>
-            </td>         
-         <td style="width:12%">
-         <button id="<?php echo $row['id'];?>" type="button" class="btn btn-primary btnEditPackage" data-toggle="modal"  data-target="#editPackage">
-                      Edit
-                </button>
-                <br>
-                <button  id="<?php echo $row['id'];?>"  class="btn btn-danger btnDeletepackage" onclick="confirm('Are you sure you want to delete this package')" value="<?php echo $row['id'];?>" id="btnDelete">Delete</a>
-                
-         </td>
-    </tr>
-<?php }?>
+                        <div class="heading">
+                            <h2 style="color: black"> Package Includes & Excludes </h2>
+                        </div>
 
-                            </tbody>
-                        </table>
+
+                        <div class="col-md-6">
+                                    <ul>
+                                        <h5 style="color: black">
+                                                Includes 
+                                        </h5>
+                                        <?php
+                                            $get_include = "SELECT * FROM tbl_assign_inc_exc WHERE p_id = '$p_id' AND is_inc_exc = 0";
+                                            $run_include = mysqli_query($dbcon, $get_include);
+                                            while($row_include = mysqli_fetch_assoc($run_include)) {
+
+                                                $p_i_e = $row_include['p_i_e'];
+
+                                                $get_inc_text = "SELECT * FROM tbl_inc_exc WHERE id = $p_i_e";
+                                                $run_inc_text = mysqli_query($dbcon, $get_inc_text);
+                                                $row_inc_exc = mysqli_fetch_assoc($run_inc_text);
+
+                                        ?>
+                                        <li style="color: black"> <?php echo $row_inc_exc['title'];?>
+                                                <a href="?i_e_id=<?php echo $row_include['id'];?>&p_id=<?php echo $p_id?>&p_name=<?php echo $p_name?>"> Delete </a>
+                                        </li>
+                                        <?php } ?>
+                                    </ul>
+                            </div>
+
+                            <div class="col-md-6">
+                                    <ul>
+
+                                        <h5 style="color: black">
+                                                Excludes 
+                                        </h5>
+                                        <?php
+                                            $get_include = "SELECT * FROM tbl_assign_inc_exc WHERE p_id = '$p_id' AND is_inc_exc = 1";
+                                            $run_include = mysqli_query($dbcon, $get_include);
+                                            while($row_include = mysqli_fetch_assoc($run_include)) {
+
+                                                $p_i_e = $row_include['p_i_e'];
+
+                                                $get_inc_text = "SELECT * FROM tbl_inc_exc WHERE id = $p_i_e";
+                                                $run_inc_text = mysqli_query($dbcon, $get_inc_text);
+                                                $row_inc_exc = mysqli_fetch_assoc($run_inc_text);
+
+                                        ?>
+                                       <li style="color: black"> <?php echo $row_inc_exc['title'];?>
+                                                <a href="?i_e_id=<?php echo $row_include['id'];?>&p_id=<?php echo $p_id?>&p_name=<?php echo $p_name?>"> Delete </a>
+                                        </li>
+                                        <?php } ?>
+                                    </ul>
+                            </div>
+
+
+                            <script>
+        $(document).ready(function () {
+            
+            $('#includedContent').show();
+            $('#excludedContent').hide();
+
+            
+            $('#includeButton').click(function () {
+                $('#includedContent').show();
+                $('#excludedContent').hide();
+            });
+
+            
+            $('#excludeButton').click(function () {
+                $('#includedContent').hide();
+                $('#excludedContent').show();
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+                    <?php
+                        // if(isset($_GET['i_e_id'])) {
+                        //     $id = $_GET['i_e_id'];
+                        //     $p_id = $_GET['p_id'];
+                        //     $p_name = $_GET['p_name'];
+                        //     $del = "DELETE FROM tbl_assign_inc_exc WHERE id = $id";
+                        //     $path = 'manage_package_include_exclude.php?p_id=' . $p_id . '&p_name=' . $p_name;
+
+                        //     $run = mysqli_query($dbcon, $del);
+                        //     if($run) {
+                        //         echo "<script> 
+                        //                     alert('Item removed from the inclusion list');
+                        //                     window.open('_BLANK', '" + $path  +   "'); 
+                        //                 </script>";
+                        //     } else {
+                        //         echo "<script> alert('Error Occured'); </script>";
+                        //     }
+                        // }
+                        
+                    ?>
 
 
 
                     </div>
                 </div>
+
+
+
             </div>
-                    </div>
-                </div>
-            </div>
+        </div>
     </div>
 </div>
 

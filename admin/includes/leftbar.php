@@ -63,7 +63,7 @@
                     <li >
                     <i class="fa fa-building"></i> 
                         
-                    <a href="../views/manage_contact.php"> Manage Hotels </a> </li>
+                    <a href="../views/manage_hotels.php"> Manage Hotels </a> </li>
                     <li > 
                     <i class="fa fa-car"></i> 
                         
@@ -75,7 +75,7 @@
                     <li > 
                     <i class="fa fa-book"></i> 
                         
-                    <a href="../views/manage_blogs.php"> Manage Blogs </a> </li>
+                    <a href="../views/manage_blog.php"> Manage Blogs </a> </li>
                     <li > 
                     <i class="fa fa-image"></i> 
                         

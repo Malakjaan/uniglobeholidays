@@ -139,4 +139,58 @@
             echo mysqli_error($dbcon);
         }
     }
+    elseif($_POST["filename"]=="update_blog"){
+        $id = $_POST['blog_id'];
+        $bt = $_POST['blog_title1'];
+        $bd = $_POST['blog_description1'];
+        $temp_name = $_FILES['blog_image1']['tmp_name'];
+        $org_name = $_FILES['blog_image1']['name'];
+        $size = $_FILES['blog_image1']['size'];
+        $path = '../../assets/images/packages/' . $org_name;
+
+        if($size > 0) {
+            move_uploaded_file($temp_name,$path);
+            $query = "UPDATE tbl_blog SET blog_title='$bt', blog_description = '$bd', blog_image='$org_name' WHERE id = $id";
+            $result = mysqli_query($dbcon, $query);
+            echo 200;
+        } else {
+            $query = "UPDATE tbl_blog  SET blog_title='$bt', blog_description = '$bd' WHERE id = $id";
+            $result = mysqli_query($dbcon, $query);
+        }
+            
+        if($result) {
+            echo 200;
+        } else {
+            echo mysqli_error($dbcon);
+        }
+        }
+        elseif($_POST["filename"]=="update_hotels"){
+            $id = $_POST['hotel_id'];
+            $hn = $_POST['hotel_name1'];
+            $hl = $_POST['hotel_location1'];
+            $hd = $_POST['hotel_description1'];
+            $st = $_POST['standard1'];
+            $rt = $_POST['rating1'];
+            
+            $temp_name = $_FILES['hotel_image1']['tmp_name'];
+            $org_name = $_FILES['hotel_image1']['name'];
+            $size = $_FILES['hotel_image1']['size'];
+            $path = '../../assets/images/packages/' . $org_name;
+    
+            if($size > 0) {
+                move_uploaded_file($temp_name,$path);
+                $query = "UPDATE tbl_hotels SET hotel_name='$hn', hotel_location = '$hl',hotel_description = '$hd', standard = '$st', rating = '$rt', hotel_image='$org_name' WHERE id = $id";
+                $result = mysqli_query($dbcon, $query);
+                echo 200;
+            }  else {
+                $query = "UPDATE tbl_hotels  SET hotel_name='$hn', hotel_location = '$hl',hotel_description = '$hd', standard = '$st', rating = '$rt' WHERE id = $id";
+                $result = mysqli_query($dbcon, $query);
+            }
+                
+            if($result) {
+                echo 200;
+            } else {
+                echo mysqli_error($dbcon);
+            }
+            }
 ?>

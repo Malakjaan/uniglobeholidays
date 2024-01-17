@@ -66,5 +66,27 @@ if(isset($_POST['filename']) && $_POST['filename'] == 'edit_feedback') {
             echo 201;
         }
     }
+    else if($_POST["filename"] == "edit_blog") { 
+        $id = $_POST['blog_id'];
+        $query ="SELECT * FROM tbl_blog WHERE id = $id";
+        $result = mysqli_query($dbcon, $query);
+        $row = mysqli_fetch_assoc($result);
+        if($result) {
+            echo json_encode($row);
+        } else {
+            echo 201;
+        }
+    }
+    else if($_POST["filename"] == "edit_hotels") { 
+        $id = $_POST['hotel_id'];
+        $query ="SELECT * FROM tbl_hotels WHERE id = $id";
+        $result = mysqli_query($dbcon, $query);
+        $row = mysqli_fetch_assoc($result);
+        if($result) {
+            echo json_encode($row);
+        } else {
+            echo 201;
+        }
+    }
 
 ?>

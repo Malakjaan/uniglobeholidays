@@ -73,4 +73,46 @@ if(isset($_POST['filename']) && $_POST['filename'] == 'insert_package') {
         
     }
 } 
+else if(isset($_POST['filename']) && $_POST['filename'] == 'insert_gallery') {
+    $temporary_name = $_FILES['image']['tmp_name'];
+    $org_name = $_FILES['image']['name'];
+    $path = '../../assets/images/packages/' . $org_name;
+    $str = explode('.', $org_name);
+    
+
+    
+    if(move_uploaded_file($temporary_name,$path))
+    {
+       $query = "INSERT INTO tbl_gallery(image) 
+       VALUES('$org_name')";
+        $result = mysqli_query($dbcon, $query);
+        if($result) {
+            echo 200;
+        } else {
+            echo mysqli_error($dbcon); 
+        }
+        
+    }
+} 
+else if(isset($_POST['filename']) && $_POST['filename'] == 'insert_blog') {
+    $title = $_POST['blog_title'] ;
+    $desc = $_POST['blog_description'] ;
+    $status = $_POST['blog_status'] ;
+    $temporary_name = $_FILES['blog_image']['tmp_name'];
+    $org_name = $_FILES['blog_image']['name'];
+    $path = '../../assets/images/packages/' . $org_name;
+    $str = explode('.', $org_name);
+
+    if(move_uploaded_file($temporary_name,$path))
+    {
+    $query = "INSERT INTO tbl_blog(blog_title, blog_description, blog_image, blog_status) 
+    VALUES('$title', '$desc', '$org_name', '$status')";
+    $result = mysqli_query($dbcon, $query);
+        if($result) {
+            echo 200;
+        } else {
+            echo mysqli_error($dbcon); 
+        }
+} }
+
 ?>

@@ -68,6 +68,41 @@
             }
     
     }
+    else if($_POST["filename"]=="delete_gallery"){
+        $id = $_POST['gallery_id'];
+
+        $query = "DELETE FROM  tbl_gallery WHERE id = $id";
+        $result = mysqli_query($dbcon, $query);
+            if($result) {
+                echo 200;
+            } else {
+                echo mysqli_error($dbcon);
+            }
+    
+    }
+    else if($_POST["filename"]=="delete_blog"){
+        $id = $_POST['blog_id'];
+
+        $query = "DELETE FROM  tbl_blog WHERE id = $id";
+        $result = mysqli_query($dbcon, $query);
+            if($result) {
+                echo 200;
+            } else {
+                echo mysqli_error($dbcon);
+            }
+    
+    }
+    else if($_POST["filename"]=="delete_hotels"){
+        $id = $_POST['hotel_id'];
+
+    $query = "DELETE FROM  tbl_hotels WHERE id = $id";
+    $result = mysqli_query($dbcon, $query);
+        if($result) {
+            echo 200;
+        } else {
+            echo mysqli_error($dbcon);
+        }
+    }
 
 
     

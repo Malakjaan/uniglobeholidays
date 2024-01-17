@@ -1,3 +1,9 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['username'])) {
+        header("Location: login.php");
+    }
+?>
 <html>
 <head>
     <title> Welcome Uni-Globe Holidays </title>
@@ -21,7 +27,7 @@
 <style>
 *{
     padding:0;
-    margin:0
+    margin:0;
 }
 
 .header-list {

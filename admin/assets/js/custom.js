@@ -724,18 +724,316 @@ $.ajax({
                                 $('#myImage11').attr('src',tmppath);
                             });
 
+                            $('#frmGallery').on('submit', function(e){
+                                e.preventDefault();
+                                var formData = new FormData(this);
+                                var filename = "insert_gallery";
+                                var pic_size = $('#image')[0].files[0].size;//get file size 
+                                var pic_type = $('#image')[0].files[0].type;
+                                
+                                if(pic_size > 2035597) {
+                                    alert('Image size is too large. Please upload image having size less than 2MB');
+                                    $('#image').css({border: "2px solid yellow"});
+                                    return 0;
+                                } else {
+                                    if(pic_type == 'image/jpeg' || pic_type == 'image/png' || pic_type == 'image/jpg') {
+                                        $('#image').css({border: "2px solid green"});
+                                    } else {
+                                        alert('Image format is invalid. Please upload image having png/jpg extension');
+                                        $('#image').css({border: "2px solid red"});
+                                        return 0;
+                                    }
+                                }
+                                $.ajax({
+                                        url:'../routes/insert_details.php',
+                                        
+                                        
+                                        method: 'post',
+                                        data: formData,
+                                        cache:false,
+                                        contentType: false,
+                                        processData: false, 
+                                        success:function(data){
+                                            if(data == 200) {
+                                                alert('Photo Added Successfully');
+                                                window.location.href = window.location.href
+                                            } else {
+                                                alert('Failed to add photo. Please try again later');
+                                                window.location.href = window.location.href
+                                            }
+                                        }
+                                    });
+                                });
+                                
+                               
+            $('.btnDeletegallery').on('click', function(){
+                var id = $(this).attr("id");
+                var filename = "delete_gallery";
+                $.ajax({
+                    url:"../routes/delete_details.php",
+                    method: 'post',
+                    dataType:'JSON',
+                    data: {gallery_id: id,filename:filename},                
+                    success:function(data){
+                        if(data == 200) {
+                                            alert('Photo Deleted Successfully');
+                                            window.location.href = window.location.href
+                                        } else {
+                                            alert('Failed to delete this photo. Please try again later');
+                                            window.location.href = window.location.href
+                                        }
+                    }
+                });
+            });
+
+            $('#frmblog').on('submit', function(e){
+                e.preventDefault();
+                var formData = new FormData(this);
+                
+                var pic_size = $('#blog_image')[0].files[0].size;//get file size 
+                var pic_type = $('#blog_image')[0].files[0].type;
+    
+                if(pic_size > 2000000) {
+                    alert('Image size is too large. Please upload image having size less than 2MB');
+                    $('#blog_image').css({border: "2px solid yellow"});
+                    return 0;
+                } else {
+                    if(pic_type == 'image/jpeg' || pic_type == 'image/png' || pic_type == 'image/jpg') {
+                        $('#blog_image').css({border: "2px solid green"});
+                    } else {
+                        alert('Image format is invalid. Please upload image having png/jpg extension');
+                        $('#blog_image').css({border: "2px solid red"});
+                        return 0;
+                    }
+                }
+                $.ajax({
+                    url:'../routes/insert_blog.php',
+                    method: 'post',
+                    data: formData,
+                    cache:false,
+                    contentType: false,
+                    processData: false,
+                    success:function(data){ 
+                        if(data == 200) {
+                            alert('blog Added Successfully');
+                            window.location.href = window.location.href
+                        } else {
+                            alert('Failed to add blog. Please try again later');
+                        }
+                    }
+                });
+            });
+    
+            $('.btnEditblog').on('click', function(){
+                var id = $(this).attr("id");  
+                var filename = "edit_blog";
+                $.ajax({
+                    url:"../routes/edit_details.php",
+                    method:"post",
+                    dataType: 'JSON',                
+                    data:{blog_id:id, filename:filename},
+                    success: function(data){
+                        $('#blog_title1').val(data['blog_title']);
+                        $('#blog_description1').val(data['blog_description']);
+                        $('#myImage').attr('src', '../../assets/images/packages/' + data['blog_image']);
+                        $('#blog_id').val(data['id']);
+                    }
+                });
+    
+            });
+                     $('#frmeditblog').on('submit', function(e){
+    
+                                e.preventDefault();
+                                var formData = new FormData(this);
+                                var filename = "update_blog";
+                                $.ajax({
+                                        url:'../routes/update_details.php',
+                                        method: 'post',
+                                        data: formData,
+                                        cache:false,
+                                        contentType: false,
+                                        processData: false, 
+                                        success:function(data){
+                                            if(data == 200) {
+                                                alert('Details Updated Successfully');
+                                                window.location.href = window.location.href
+                                            } else {
+                                                alert('Failed to update blog details. Please try again later');
+                                                window.location.href = window.location.href
+                                            }
+                                        }
+                                    });
+                                });
+               
+             
+    
+            $('.btnDeleteblog').on('click', function(){
+                var id = $(this).attr("id");  
+                var filename = "delete_blog";
+                $.ajax({
+                    url:"../routes/delete_details.php",
+                    method:"post",
+                    dataType: 'JSON',                
+                    data:{blog_id:id, filename:filename},
+                    success: function(data){
+                        if(data == 200) {
+                                alert('blog Deleted Successfully');
+                                window.location.href = window.location.href
+                            } else {
+                                alert('Failed to delete blog. Please try again later');
+                                window.location.href = window.location.href
+                            }
+                    }
+                });
+    
+            });
+
+            $('#frmhotel').on('submit', function(e){
+                e.preventDefault();
+                var formData = new FormData(this);
+                var pic_size = $('#hotel_image')[0].files[0].size;//get file size 
+                var pic_type = $('#hotel_image')[0].files[0].type;
+    
+                if(pic_size > 2000000) {
+                    alert('Image size is too large. Please upload image having size less than 2MB');
+                    $('#hotel_image').css({border: "2px solid yellow"});
+                    return 0;
+                } else {
+                    if(pic_type == 'image/jpeg' || pic_type == 'image/png' || pic_type == 'image/jpg') {
+                        $('#hotel_image').css({border: "2px solid green"});
+                    } else {
+                        alert('Image format is invalid. Please upload image having png/jpg extension');
+                        $('#hotel_image').css({border: "2px solid red"});
+                        return 0;
+                    }
+                }
+                $.ajax({
+                    url:'../routes/insert_hotels.php',
+                    method: 'post',
+                    data: formData,
+                    cache:false,
+                    contentType: false,
+                    processData: false,
+                    success:function(data){ 
+                        if(data == 200) {
+                            alert('hotel Details Added Successfully');
+                            window.location.href = window.location.href
+                        } else {
+                            alert('Failed to add hotel details. Please try again later');
+                        }
+                    }
+                });
+            });
+            $('.btnDeletehotel').on('click', function(){
+                var id = $(this).attr("id");  
+                var filename = "delete_hotels";
+                $.ajax({
+                    url:"../routes/delete_details.php",
+                    method:"post",
+                    dataType: 'JSON',                
+                    data:{hotel_id:id, filename:filename}, 
+                    success: function(data){
+                        if(data == 200) {
+                                alert('hotel Deleted Successfully');
+                                window.location.href = window.location.href
+                            } else {
+                                alert('Failed to delete hotel. Please try again later');
+                                window.location.href = window.location.href
+                            }
+                    }
+                });
+    
+            });
+            $('.btnEdithotels').on('click', function(){
+                var id = $(this).attr("id");  
+                var filename = "edit_hotels";
+                $.ajax({
+                    url:"../routes/edit_details.php",
+                    method:"post",
+                    dataType: 'JSON',                
+                    data:{hotel_id:id, filename:filename},
+                    success: function(data){
+                        $('#hotel_name1').val(data['hotel_name']);
+                        $('#hotel_location1').val(data['hotel_location']);
+                        $('#hotel_description1').val(data['hotel_description']);
+                        $('#rating1').val(data['rating']);
+                        $('#standard1').val(data['standard']);
+                        $('#myImage').attr('src', '../../assets/images/packages/' + data['hotel_image']);
+                        $('#hotel_id').val(data['id']);
+                    }
+                });
+    
+            });
+                     $('#frmEdithotels').on('submit', function(e){
+    
+                                e.preventDefault();
+                                var formData = new FormData(this);
+                                var filename = "update_hotels";
+                                $.ajax({
+                                        url:'../routes/update_details.php',
+                                        method: 'post',
+                                        data: formData,
+                                        cache:false,
+                                        contentType: false,
+                                        processData: false, 
+                                        success:function(data){
+                                            if(data == 200) {
+                                                alert('Details Updated Successfully');
+                                                window.location.href = window.location.href
+                                            } else {
+                                                alert('Failed to update hotels details. Please try again later');
+                                                window.location.href = window.location.href
+                                            }
+                                        }
+                                    });
+                                });
+               
 
 
 
+            
+                $('#btn_login').on('click', function(e){
+                    e.preventDefault();
+                    let username = $('#username').val();
+                    let password = $('#password').val();
+                    
+                    let remember = $('#remember_me').is(":checked") ? 1 : 0;
+
+                    $.ajax({
+                        url: "../routes/login.php",
+                        method:"post",
+                        data:{usr:username, pwd:password, remember_me:remember},
+                        success: function(data){
+                            if(data){
+                                window.location.href = '../../admin/views/index.php'
+                            } else {
+
+                            }
+                        }
+                    });
+
+                });
 
 
+                $('#btn_forgot_password').on('click', function(e){
+                    e.preventDefault();
+                    let email = $('#email').val();
+                    $.ajax({
+                        url: "../routes/forgot.php",
+                        method:"post",
+                        data:{email:email},
+                        success: function(data){
+                            if(data){
+                                // alert('If the entered email id is linked with our portal, you might have received a new password. Kindly check the same');
+                                // window.location.href = '../../admin/views/login.php'
+                                alert(data);
+                            } else {
+                                alert(data);
+                            }
+                        }
+                    });
 
-    
-    
-    
-    
-    
-    
+                });
     
         });
        
