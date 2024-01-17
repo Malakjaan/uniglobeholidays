@@ -16,13 +16,16 @@
     $headers = "From: faisalbhat0770@gmail.com";
     
     if(mail($to, $subject, $message, $headers)) {
-        $update_pass = "UPDATE tbl_login SET pwd = '$new_pass' WHERE email = '$email'";
-        $run_pass = mysqli_query($dbcon, $update_pass);
-        if($run) {
-            echo 200;
-        } else {
-            echo 201;
-        }
+        // $update_pass = "UPDATE tbl_login SET pwd = '$new_pass' WHERE email = '$email'";
+        // $run_pass = mysqli_query($dbcon, $update_pass);
+        // if($run) {
+        //     echo 200;
+        // } else {
+        //     echo 201;
+        // }
+        echo 200;
+    } else {
+        echo 201;
     }
 
 

@@ -1024,9 +1024,8 @@ $.ajax({
                         data:{email:email},
                         success: function(data){
                             if(data){
-                                // alert('If the entered email id is linked with our portal, you might have received a new password. Kindly check the same');
-                                // window.location.href = '../../admin/views/login.php'
-                                alert(data);
+                                alert('If the entered email id is linked with our portal, you might have received a new password. Kindly check the same');
+                                //window.location.href = '../../admin/views/login.php'
                             } else {
                                 alert(data);
                             }
