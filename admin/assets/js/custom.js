@@ -1011,9 +1011,7 @@ $.ajax({
                             }
                         }
                     });
-
                 });
-
 
                 $('#btn_forgot_password').on('click', function(e){
                     e.preventDefault();
@@ -1025,14 +1023,180 @@ $.ajax({
                         success: function(data){
                             if(data){
                                 alert('If the entered email id is linked with our portal, you might have received a new password. Kindly check the same');
-                                //window.location.href = '../../admin/views/login.php'
+                                window.location.href = '../../views/login.php';
                             } else {
                                 alert(data);
                             }
                         }
                     });
-
                 });
-    
+
+
+                    $('#frmProfile').on('submit', function(e){
+                        e.preventDefault();
+                        
+                        var filename = "insert_profile";
+                        var formData = new FormData(this);
+                        
+                        var pic_size = $('#profile_image')[0].files[0].size;
+                        var pic_type = $('#profile_image')[0].files[0].type;
+            
+                        if(pic_size > 55000) {
+                            alert('Image size is too large. Please upload image having size less than 55kb');
+                            $('#profile_image').css({border: "2px solid yellow"});
+                            return 0;
+                        } else {
+                            if(pic_type == 'image/jpeg' || pic_type == 'image/png' || pic_type == 'image/jpg') {
+                                $('#profile_image').css({border: "2px solid green"});
+                            } else {
+                                alert('Image format is invalid. Please upload image having png/jpg extension');
+                                $('#profile_image').css({border: "2px solid red"});
+                                return 0;
+                            }
+                        }
+                        $.ajax({
+                            url:'../routes/insert_details.php',
+                            method: 'post',
+                            data: formData,
+                            cache:false,
+                            contentType: false,
+                            processData: false,
+                            success:function(data){
+                                if(data == 200) {
+                                    alert('Profile Details Added Successfully');
+                                    window.location.href = window.location.href
+                                } else {
+                                    alert('Failed to add Profile details. Please try again later'); 
+                                }
+                            }
+                        });
+                    });
+                    $('.btnEditProfile').on('click', function(){
+           
+                        var id = $(this).attr("id");  
+                        var filename = "edit_profile";
+                        $.ajax({
+                            url:"../routes/edit_details.php",
+                            method:"post",
+                            dataType: 'JSON',                
+                            data:{slider_id:id, filename:filename},
+                            success: function(data){
+                                $('#name1').val(data['name']);
+                                $('#username1').val(data['username']);
+                                $('#email1').val(data['email']);
+                                $('#password1').val(data['password']);
+                                $('#myImage').attr('src', '../../assets/images/owner/' + data['image']);
+                                $('#profile_id').val(data['id']);
+                            }
+                        });
+            
+                    });
+            
+                    $('.btnDeleteProfile').on('click', function(){
+                        var id = $(this).attr("id");  
+                        var filename = "delete_profile";
+                        $.ajax({
+                            url:"../routes/delete_details.php",
+                            method:"post",
+                            dataType: 'JSON',                
+                            data:{profile_id:id, filename:filename},
+                            success: function(data){
+                                if(data == 200) {
+                                        alert('Profile Deleted Successfully');
+                                        window.location.href = window.location.href
+                                    } else {
+                                        alert('Failed to delete profile. Please try again later');
+                                        window.location.href = window.location.href
+                                    }
+                            }
+                        });
+            
+                    });
+            
+                    $('#frmeditprofile').on('submit', function(e){
+            
+                        e.preventDefault();
+                        var formData = new FormData(this);
+                        var filename = "update_profile_here";
+                        $.ajax({
+                                url:'../routes/update_details.php',
+                                method: 'post',
+                                data: formData,
+                                cache:false,
+                                contentType: false,
+                                processData: false, 
+                                success:function(data){
+                                    if(data == 200) {
+                                        alert('Details Updated Successfully');
+                                        window.location.href = window.location.href
+                                    } else {
+                                        
+                                       alert('Failed to update profile details. Please try again later');
+                                    window.location.href = window.location.href
+
+                                    }
+                                }
+                            });
+                        });
+
+                        $('#profile_pic').on('change', function(event){      
+                            event.preventDefault();
+                            var tmppath = URL.createObjectURL(event.target.files[0]);
+                            $('#image').attr('src',tmppath);                    
+                        });
+            
+        
+        
+                        $('#frmchangeprofile').on('submit', function(e){
+            
+                            e.preventDefault();
+                            var formData = new FormData(this);
+                            var filename = "update_profile"; 
+                            
+                            $.ajax({
+                                    url:'../routes/update_details.php',
+                                    method: 'post',
+                                    data: formData,
+                                    cache:false,
+                                    contentType: false,
+                                    processData: false, 
+                                    success:function(data){
+                                        if(data == 200) {
+                                            alert('Profile photo Updated Successfully');
+                                            window.location.href = window.location.href
+                                        } else {
+                                            alert('Failed to update photo. Please try again later');
+                                            window.location.href = window.location.href
+                                        }
+                                    }
+                                });
+                            });
+                            
+                            $('#btn_save_booking_details').on('click', function(e){
+                                e.preventDefault(); 
+                                let x = $('#name').val(); 
+                                let y = $('#contact').val();
+                                let z = $('#email').val();
+                                let u = $('#check_in_date').val();
+                                let v = $('#check_out_date').val();
+                                let w = $('#days').val();
+                                let n = $('#adults').val();
+                                let m = $('#childs').val();
+                                
+                                $.ajax({                    
+                                    url:'../../resources/insert_booking.php',
+                                    method: 'post',
+                                    data: {name:x, contact:y, email:z, check_in_date:u, check_out_date:v, days:w, check_out_date:v, days:n, adults:v, childs:m},
+                                    success:function(data){    
+                                        if(data == 200) {
+                                            alert('Booking Details Added Successfully');
+                                        } else {
+                                            alert('Failed to add booking details. Please try again later');
+                                        }
+                                    }
+                                });
+                            });
+
+
         });
        

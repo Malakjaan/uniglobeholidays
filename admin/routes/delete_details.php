@@ -103,7 +103,17 @@
             echo mysqli_error($dbcon);
         }
     }
+    else if($_POST["filename"]=="delete_profile"){
+        $id = $_POST['profile_id'];
 
+    $query = "DELETE FROM  tbl_login WHERE id = $id";
+    $result = mysqli_query($dbcon, $query);
+        if($result) {
+            echo 200;
+        } else {
+            echo mysqli_error($dbcon);
+        }
+    }
 
     
 

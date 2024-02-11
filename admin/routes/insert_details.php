@@ -55,7 +55,7 @@ if(isset($_POST['filename']) && $_POST['filename'] == 'insert_package') {
     
     $temporary_name = $_FILES['image']['tmp_name'];
     $org_name = $_FILES['image']['name'];
-    $path = '../../assets/images/packages/' . $org_name;
+    $path = '../../assets/images/destinations/' . $org_name;
     $str = explode('.', $org_name);
     
 
@@ -93,26 +93,27 @@ else if(isset($_POST['filename']) && $_POST['filename'] == 'insert_gallery') {
         }
         
     }
-} 
-else if(isset($_POST['filename']) && $_POST['filename'] == 'insert_blog') {
-    $title = $_POST['blog_title'] ;
-    $desc = $_POST['blog_description'] ;
-    $status = $_POST['blog_status'] ;
-    $temporary_name = $_FILES['blog_image']['tmp_name'];
-    $org_name = $_FILES['blog_image']['name'];
-    $path = '../../assets/images/packages/' . $org_name;
+} else if(isset($_POST['filename']) && $_POST['filename'] == 'insert_profile') {
+    $nm = $_POST['name'] ;
+    $un = $_POST['username'] ;
+    $em = $_POST['email'] ;
+    $pw = $_POST['password'] ;
+    $temporary_name = $_FILES['profile_image']['tmp_name'];
+    $org_name = $_FILES['profile_image']['name'];
+    $path = '../../assets/images/owner/' . $org_name;
     $str = explode('.', $org_name);
 
     if(move_uploaded_file($temporary_name,$path))
     {
-    $query = "INSERT INTO tbl_blog(blog_title, blog_description, blog_image, blog_status) 
-    VALUES('$title', '$desc', '$org_name', '$status')";
+    $query = "INSERT INTO tbl_login(name, username , email, pwd, image) 
+    VALUES('$nm', '$un','$em','$pw', '$org_name')";
     $result = mysqli_query($dbcon, $query);
         if($result) {
             echo 200;
         } else {
             echo mysqli_error($dbcon); 
         }
-} }
+    }
+}
 
 ?>

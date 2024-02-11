@@ -67,7 +67,7 @@ require_once('../includes/header.php'); ?>
          <td style="width:5%" ><?php echo $row['id'];?></td>
          <td style="width:15%"><?php echo $row['destination_name'];?></td>
          <td style="width:14%"><?php echo $row['destination_location'];?></td>
-         <td style="width:14%"><img style="width:150px; height:150px;" src="../../assets/images/packages/<?php echo $row['image'];?>" /></td>
+         <td style="width:14%"><img style="width:150px; height:150px;" src="../../assets/images/destinations/<?php echo $row['image'];?>" /></td>
          <td style="width:14%"><?php echo $row['destination_desc'];?></td>
          <td style="width:11%">
         </td>

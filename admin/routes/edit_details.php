@@ -88,5 +88,16 @@ if(isset($_POST['filename']) && $_POST['filename'] == 'edit_feedback') {
             echo 201;
         }
     }
+    else if($_POST["filename"] == "edit_profile") { 
+        $id = $_POST['profile_id'];
+        $query ="SELECT * FROM tbl_login WHERE id = $id";
+        $result = mysqli_query($dbcon, $query);
+        $row = mysqli_fetch_assoc($result);
+        if($result) {
+            echo json_encode($row);
+        } else {
+            echo 201;
+        }
+    }
 
 ?>

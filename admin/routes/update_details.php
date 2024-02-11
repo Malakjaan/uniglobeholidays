@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require_once('../../config/connection.php');
     if(isset($_POST['filename']) && $_POST['filename'] == 'update_feedback'){    
     $id = $_POST['feedback_id'];
@@ -192,5 +193,48 @@
             } else {
                 echo mysqli_error($dbcon);
             }
+            }
+            else if($_POST["filename"]=="update_profile_here"){
+                
+                $id = $_SESSION['id'];
+                $nm = $_SESSION['name1'];
+                $us = $_SESSION['username1'];
+                $em = $_SESSION['email1'];
+                $pw = $_SESSION['password1'];
+                $temp_name = $_FILES['profile_image1']['tmp_name'];
+                $org_name = $_FILES['profile_image1']['name'];
+                $size = $_FILES['profile_image1']['size'];
+                $path = '../../assets/images/owner/' . $org_name;
+                
+                move_uploaded_file($temp_name, $path);
+
+                $query = "UPDATE tbl_login SET name1='$nm', username1='$us',email1='$em',password1='$pw' ,image='$org_name' WHERE id = $id";
+                $result = mysqli_query($dbcon, $query);
+                
+                if($result) {
+                    echo 200;
+                } else {
+                    echo mysqli_error($dbcon);
+                }
+            }
+
+            else if($_POST["filename"]=="update_profile"){
+                $id = $_SESSION['id'];
+                $temp_name = $_FILES['profile_image']['tmp_name'];
+                $org_name = $_FILES['profile_image']['name'];
+                $size = $_FILES['profile_image']['size'];
+                $path = '../../assets/images/owner/' . $org_name;
+                
+                move_uploaded_file($temp_name, $path);
+
+                $query = "UPDATE tbl_login SET image='$org_name' WHERE id = $id";
+                $result = mysqli_query($dbcon, $query);
+                
+                if($result) {
+                    $_SESSION['photo'] = $org_name;
+                    echo 200;
+                } else {
+                    echo mysqli_error($dbcon);
+                }
             }
 ?>

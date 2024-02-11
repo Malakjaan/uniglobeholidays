@@ -1,6 +1,9 @@
 <?php 
 
-require_once('../includes/header.php'); ?>
+require_once('../includes/header.php'); 
+
+require_once('../../config/connection.php');
+?>
 
     <div class="row" STYLE="POSITION: absolute;TOP: 60PX;">
                 <div class="col-md-12">
@@ -13,8 +16,21 @@ require_once('../includes/header.php'); ?>
                                 </div>
                             <div class="row">
                                 
-                            <div class="form-group col-md-12">
-                                <label for="inputlocation">Hotel Location</label> <textarea class="form-control" id="hotel_location" name="hotel_location" placeholder="Hotel Location"></textarea>
+                            <div class="form-group col-md-8">
+                                <label for="inputlocation">Hotel Location</label> 
+                                <select style="color: black"  name="hotel_location" class="form-control" id="hotel_location" >
+                                        <option value=""> Choose Hotel Location </option>
+                                        <?php
+                                            $get_loc = "SELECT * FROM tbl_locations";
+                                            $run_loc = mysqli_query($dbcon, $get_loc);
+                                            while($row_loc = mysqli_fetch_assoc($run_loc)) {
+                                        ?>
+                                        <option style="color: black"  value="<?=$row_loc['id']?>">  <?=$row_loc['name']?>  </option>
+                                        <?php } ?>
+                                    </select> 
+                            </div>
+                            <div class="col-md-3 btn btn-success" style="position:absolute;top:165px;right:70px; ">
+                            <a href="hotel_location.php">add new type</a>
                             </div>
                             </div>
                              <div class="row">
@@ -36,13 +52,18 @@ require_once('../includes/header.php'); ?>
                                     </select> 
                             </div>
                             <div class="form-group col-md-6">
-                                    <label for="inputtypes">Types of hotels</label>
-                                    <select name="standard" class="form-control" id="standard " >
-                                        <option > ....select.... </option>
-                                        <option > small hotels </option>
-                                        <option > medium hotels</option>
-                                        <option > large hotels</option>
+                                <label for="inputlocation">types of hotel</label> 
+                                <select style="color: black"  name="standard" class="form-control" id="standard" >
+                                        <option value=""> Choose hotel type</option>
+                                        <?php
+                                            $get_loc = "SELECT * FROM tbl_standard";
+                                            $run_loc = mysqli_query($dbcon, $get_loc);
+                                            while($row_loc = mysqli_fetch_assoc($run_loc)) {
+                                        ?>
+                                        <option style="color: black"  value="<?=$row_loc['id']?>">  <?=$row_loc['standard']?>  </option>
+                                        <?php } ?>
                                     </select> 
+                            </div>
                             </div>
                         </div>
                         <div class="row">
@@ -75,7 +96,6 @@ require_once('../includes/header.php'); ?>
                                 </tr>
                             </thead>
         <tbody><?php
-        require_once('../../config/connection.php');
         $query ="SELECT * FROM tbl_hotels";
         $result = mysqli_query($dbcon, $query);  //performs a query against database
         while ($row = mysqli_fetch_assoc($result)) {     //fetch result row as an associate array
@@ -147,7 +167,17 @@ require_once('../includes/header.php'); ?>
                             <div class="row">
                                 
                             <div class="form-group col-md-8">
-                                <label for="inputlocation">Hotel Location</label> <textarea class="form-control" id="hotel_location1" name="hotel_location1" placeholder="Hotel Location"></textarea>
+                                <label for="inputlocation">Hotel Location</label> 
+                                <select name="hotel_location1" class="form-control" id="hotel_location1" >
+                                        <option value=""> Choose Hotel Location </option>
+                                        <?php
+                                            $get_loc = "SELECT * FROM tbl_locations";
+                                            $run_loc = mysqli_query($dbcon, $get_loc);
+                                            while($row_loc = mysqli_fetch_assoc($run_loc)) {
+                                        ?>
+                                        <option value="<?=$row_loc['id']?>">  <?=$row_loc['name']?>  </option>
+                                        <?php } ?>
+                                    </select> 
                             </div>
                             </div>
                              <div class="row">
@@ -169,11 +199,16 @@ require_once('../includes/header.php'); ?>
                                     </select> 
                             </div>
                             <div class="form-group col-md-4">
-                                    <label for="inputtypes">Types of hotels</label>
-                                    <select name="standard1" class="form-control" id="standard 1" >
-                                        <option > small hotels </option>
-                                        <option > medium hotels</option>
-                                        <option > large hotels</option>
+                                <label for="inputlocation">types of hotel</label> 
+                                <select style="color: black"  name="standard" class="form-control" id="standard" >
+                                        <option value=""> Choose hotel type</option>
+                                        <?php
+                                            $get_loc = "SELECT * FROM tbl_standard";
+                                            $run_loc = mysqli_query($dbcon, $get_loc);
+                                            while($row_loc = mysqli_fetch_assoc($run_loc)) {
+                                        ?>
+                                        <option style="color: black"  value="<?=$row_loc['id']?>">  <?=$row_loc['standard']?>  </option>
+                                        <?php } ?>
                                     </select> 
                             </div>
                         </div>
