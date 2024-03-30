@@ -1,16 +1,11 @@
-<!DOCTYPE html>
-<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
-<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
-<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
-<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--><html class=""><!--<![endif]-->
+<?php include('resources/header.php'); ?>
 <head>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-	<title>ContactUs -Tour</title>
+	<title>Our Gallery </title>
 	<!-- Standard Favicon -->
 	<link rel="icon" type="image/x-icon" href="images/favicon.ico" />
 	<!-- For iPhone 4 Retina display: -->
@@ -173,170 +168,105 @@
 </header><!-- Header /- -->
 	<main class="site-main page-spacing">
 		<!-- PageBanner -->
-		<div class="container-fluid no-padding pagebanner contactus">
+		<div class="container-fluid no-padding pagebanner gallery3column">
 			<div class="container">
-				<h3>Contact Us</h3>
+				<h3>Our gallery</h3>
 			</div>
 		</div><!-- PageBanner /- -->
-		
-		<div class="container contactus-section">
+		<div class="container gallery-section">
 			<div class="section-padding"></div>
-			<div class="row">
-				<div class="col-md-6 contactus-left">
-					<!-- Map -->
-					<div class="map">
-						<div id="map-canvas-contact" class="map-canvas" data-lat="-37.910102" data-lng="144.764911" data-string="44 new Design Street, Melbourne 005 Australia " data-zoom="12"></div>
-					</div><!-- Map /- -->
-					<div class="row">
-						<div class="col-md-6 col-sm-6 col-xs-6 office-add">
-							<h3 class="block-title">Office Address</h3>
-							<p><span>Book your tour</span> No.09 Design Wall Building, Theme Street, Australia</p>
-						</div>
-						<div class="col-md-6 col-sm-6 col-xs-6 contact-info">
-							<h3 class="block-title">Contact Info</h3>
-							<p><span>Call Us :</span><a href="tel:011234567896" title="011234567896"> (+01) 123 456 7896</a></p>
-							<p><span>Mail Us :</span><a href="mailto:info@ourdomain.com" title="info@ourdomain.com"> info@ourdomain.com</a></p>
-							<p><span>Fax No :</span><a href="tel:011234567890" title="011234567890"> (+01) 123 456 7890</a></p>
+			<div class="section-header">
+				<h3>our holiday gallery</h3>
+				<span>We're gonna make our dreams come true</span>
+			</div>
+			<ul class="portfolio-list">
+				<li class="col-md-4 col-sm-4 col-xs-4">
+					<div class="content-image-block">
+						<a href="index-2.html#"><img src="images/gallery3.1.jpg" alt="gallery" width="370" height="320"/></a>
+						<div class="content-block-icon">
+							<a href="images/gallery3.1.jpg" class="gallery-popup"><i class="fa fa-search"></i></a>
 						</div>
 					</div>
-				</div>
-				<div class="col-md-6 contactus-right">
-					<form id="contact-form" class="contactus-form">
-						<div class="row">
-							<div class="col-md-12 col-sm-12 col-xs-12">
-								<div class="form-group">
-									<input type="text" name="contact-name" required="" class="form-control" id="input_name" placeholder="Your Name*"/>
-								</div>
-							</div>
-							<div class="col-md-12 col-sm-12 col-xs-12">
-								<div class="form-group">
-									<input type="email" name="contact-email" required="" class="form-control" id="input_email" placeholder="Email Address*"/>
-								</div>
-							</div>
-							<div class="col-md-12 col-sm-12 col-xs-12">
-								<div class="form-group">
-									<input type="text" name="contact-phone" required="" class="form-control" id="input_phone" placeholder="Phone"/>
-								</div>
-							</div>
-							<div class="col-md-12 col-sm-12 col-xs-12">
-								<div class="form-group">
-									<textarea rows="5" name="contact-message" required="" class="form-control" id="textarea_message" placeholder="Your Comment"></textarea>
-								</div>
-							</div>	
-							<div class="col-md-12 col-sm-12 col-xs-12">
-								<div class="form-group">
-									<input type="submit" value="Send a Message" id="btn_submit" title="Send" name="post">
-								</div>
-							</div>
-							<div id="alert-msg" class="alert-msg"></div>
+				</li>
+				<li class="col-md-4 col-sm-4 col-xs-4">
+					<div class="content-image-block">
+						<a href="index-2.html#"><img src="images/gallery3.2.jpg" alt="gallery" width="370" height="320"/></a>
+						<div class="content-block-icon">
+							<a href="images/gallery2.jpg" class="gallery-popup"><i class="fa fa-search"></i></a>
 						</div>
-					</form>	
-				</div>
-			</div>
-		<div class="section-padding"></div>
-	</div>
-
+					</div>
+				</li>
+				<li class="col-md-4 col-sm-4 col-xs-4">
+					<div class="content-image-block">
+						<a href="index-2.html#"><img src="images/gallery3.3.jpg" alt="gallery" width="370" height="320"/></a>
+						<div class="content-block-icon">
+							<a href="images/gallery3.3.jpg" class="gallery-popup"><i class="fa fa-search"></i></a>
+						</div>
+					</div>
+				</li>
+				<li class="col-md-4 col-sm-4 col-xs-4">
+					<div class="content-image-block">
+						<a href="index-2.html#"><img src="images/gallery3.4.jpg" alt="gallery" width="370" height="320"/></a>
+						<div class="content-block-icon">
+							<a href="images/gallery3.4.jpg" class="gallery-popup"><i class="fa fa-search"></i></a>
+						</div>
+					</div>
+				</li>
+				<li class="col-md-4 col-sm-4 col-xs-4">
+					<div class="content-image-block">
+						<a href="index-2.html#"><img src="images/gallery3.5.jpg" alt="gallery" width="370" height="320"/></a>
+						<div class="content-block-icon">
+							<a href="images/gallery3.5.jpg" class="gallery-popup"><i class="fa fa-search"></i></a>
+						</div>
+					</div>
+				</li>
+				<li class="col-md-4 col-sm-4 col-xs-4">
+					<div class="content-image-block">
+						<a href="index-2.html#"><img src="images/gallery3.6.jpg" alt="gallery" width="370" height="320"/></a>
+						<div class="content-block-icon">
+							<a href="images/gallery3.6.jpg" class="gallery-popup"><i class="fa fa-search"></i></a>
+						</div>
+					</div>
+				</li>
+				<li class="col-md-4 col-sm-4 col-xs-4">
+					<div class="content-image-block">
+						<a href="index-2.html#"><img src="images/gallery3.7.jpg" alt="gallery" width="370" height="320"/></a>
+						<div class="content-block-icon">
+							<a href="images/gallery3.7.jpg" class="gallery-popup"><i class="fa fa-search"></i></a>
+						</div>
+					</div>
+				</li>
+				<li class="col-md-4 col-sm-4 col-xs-4">
+					<div class="content-image-block">
+						<a href="index-2.html#"><img src="images/gallery3.8.jpg" alt="gallery" width="370" height="320"/></a>
+						<div class="content-block-icon">
+							<a href="images/gallery3.8.jpg" class="gallery-popup"><i class="fa fa-search"></i></a>
+						</div>
+					</div>
+				</li>
+				<li class="col-md-4 col-sm-4 col-xs-4">
+					<div class="content-image-block">
+						<a href="index-2.html#"><img src="images/gallery3.9.jpg" alt="gallery" width="370" height="320"/></a>
+						<div class="content-block-icon">
+							<a href="images/gallery3.9.jpg" class="gallery-popup"><i class="fa fa-search"></i></a>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<nav class="ow-pagination">
+				<ul class="pagination">
+					<li class="active"><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#"><i aria-hidden="true" class="fa fa-angle-double-right"></i></a></li>
+				</ul>
+			</nav>
+			<div class="section-padding"></div>
+		</div>
 	</main>
+	
 	<!-- Footer Main -->
-	<footer class="footer-main container-fluid no-padding">	
-		<div class="footer-widgetblock">
-			<!-- Container -->
-			<div class="container">
-				<div class="row">
-					<!-- Widget About -->
-					<aside class="col-md-3 col-sm-6 col-xs-6 ftr-widget about_widget">
-						<h3 class="widget-title">About our <span> Global</span></h3>
-						<p>That this group would somehow form a family that's the way we all became the Brady Bunch. Doin' it our way. There's nothing we wont try never heard word.</p>
-						<ul>
-							<li><a href="#" title="facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-							<li><a href="#" title="twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-							<li><a href="#" title="google-plus"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-							<li><a href="#" title="linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-						</ul>
-					</aside><!-- Widget About /- -->
-						
-					<!-- Widget Link -->
-					<aside class="col-md-2 col-sm-6 col-xs-6 ftr-widget link_widget">
-						<h3 class="widget-title">useful <span> Links</span></h3>
-						<a href="aboutus.html" title="About Us">About Us</a>
-						<a href="#" title="Our Packages">Our Packages</a>
-						<a href="destination.html" title="Popular Destination">Popular Destination</a>
-						<a href="#" title="Top Destination">Top Destination</a>
-						<a href="blog.html" title="Latest News">Latest News</a>
-						<a href="#" title="Our Gallery">Our Gallery</a>
-						<a href="contactus.html" title="Contact Us">Contact Us</a>
-					</aside><!-- Widget Link /- -->
-					
-					<!-- Widget OpeningHours -->
-					<aside class="col-md-4 col-sm-6 col-xs-6 ftr-widget openinghours_widget">
-						<h3 class="widget-title">Opening <span> Hours</span></h3>
-						<p>Monday<span>9:00AM to 6:00PM</span></p>
-						<p>Tuesday<span>9:00AM to 6:00PM</span></p>
-						<p>Wednesday<span>9:00AM to 6:00PM</span></p>
-						<p>Thursday<span>9:00AM to 6:00PM</span></p>
-						<p>Friday<span>9:00AM to 6:00PM</span></p>
-						<p>Saturday<span>9:00AM to 2:00PM</span></p>
-					</aside><!-- Widget OpeningHours/- -->
-					
-					<!-- Widget PopularDestination -->
-					<aside class="col-md-3 col-sm-6 col-xs-6 ftr-widget populardestination_widget">
-						<h3 class="widget-title">Popular <span> Destination</span></h3>
-						<ul>
-							<li><a title="instagram" href="#"><img width="130" height="130" alt="destinaion1" src="images/ftr-populardestinaion1.jpg"></a></li>
-							<li><a title="instagram" href="#"><img width="130" height="130" alt="destinaion1" src="images/ftr-populardestinaion2.jpg"></a></li>
-							<li><a title="instagram" href="#"><img width="130" height="130" alt="destinaion1" src="images/ftr-populardestinaion3.jpg"></a></li>
-							<li><a title="instagram" href="#"><img width="130" height="130" alt="destinaion1" src="images/ftr-populardestinaion4.jpg"></a></li>
-						</ul>	
-					</aside><!-- Widget PopularDestination /- -->
-					<div class="col-md-12 ftr-newsletter">
-						<h3>Signup newsletter</h3>
-						<form>
-							<div class="input-group">
-								<input type="text" placeholder="Enter your email address" class="form-control" required>
-								<span class="input-group-btn">
-									<button type="submit" class="btn">Sign up now</button>
-								</span>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div><!-- Container /- -->
-		</div><!-- Footer WidgetBlock /- -->
-		
-		<!-- Footer Bottom -->
-		<div class="footer-bottom">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-3">
-						<span>&copy; 2016 All Rights Reserved</span>
-					</div>
-					<div class="col-md-9">
-						<div class="footer-menu">
-							<nav class="navbar ow-navigation">
-								<div class="navbar-header">
-									<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar2" aria-expanded="false" aria-controls="navbar">
-										<span class="sr-only">Toggle navigation</span>
-										<span class="icon-bar"></span>
-										<span class="icon-bar"></span>
-										<span class="icon-bar"></span>
-									</button>
-								</div>
-								<div id="navbar2" class="navbar-collapse collapse">
-									<ul class="nav navbar-nav">
-										<li><a href="index.html" title="Home">Home</a></li>
-										<li><a href="aboutus.html" title="About">About</a></li>
-										<li><a href="#" title="Services">Services</a></li>
-										<li><a href="#" title="Privacy policy">Privacy policy</a></li>
-										<li><a href="#" title="Terms & Condition">Terms & Condition</a></li>
-									</ul>
-								</div>
-							</nav>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!-- Footer Bottom /- -->
-	</footer><!-- Footer /- -->
+	<?php include('resources/footer.php'); ?>
 	
 	<!-- JQuery v1.11.3 -->	
 	<script src="js/jquery.min.js"></script>

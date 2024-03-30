@@ -35,7 +35,7 @@
 								<img src="assets/images/packages/<?php echo $row_gallery['image'];?>" alt="gallery" width="270" style="height:<?=$height;?>px!important" />
 								</a>
 							<div class="content-block-icon">
-								<a href="images/gallery1.jpg" class="gallery-popup"><i class="fa fa-search"></i></a>
+								<a href="assets/images/packages/<?php echo $row_gallery['image'];?>" class="gallery-popup"><i class="fa fa-search"></i></a>
 							</div>
 						</div>
 					</li>

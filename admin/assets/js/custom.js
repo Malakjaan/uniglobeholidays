@@ -88,6 +88,45 @@ $( document ).ready(function() {
                         }
                     });
                 });
+                $('#btn_save_comment_details').on('click', function(e){
+                    e.preventDefault(); 
+                    let x = $('#name').val(); 
+                    let y = $('#email').val();
+                    let z = $('#message').val();
+                    let u = $('#rating').val();
+                    
+                    $.ajax({                    
+                        url:'../../../resources/insert_feedback.php',
+                        method: 'post',
+                        data: {name:x, email:y, message:z, rating:u},
+                        success:function(data){    
+                            if(data == 200) {
+                                alert('comment Added Successfully');
+                            } else {
+                                alert('Failed to add comment . Please try again later');
+                            }
+                        }
+                    });
+                });
+                $('.btnDeletebooking').on('click', function(){
+                    var id = $(this).attr("id");  
+                    var filename = "delete_booking";
+                    $.ajax({
+                        url:"../routes/delete_details.php",
+                        method: 'post',
+                        dataType:'JSON',
+                        data: {booking_id: id,filename:filename},                
+                        success:function(data){
+                            if(data == 200) {
+                                                alert('booking Deleted Successfully');
+                                                window.location.href = window.location.href
+                                            } else {
+                                                alert('Failed to booking details. Please try again later');
+                                                window.location.href = window.location.href
+                                            }
+                        }
+                    });
+                });
 
 
             

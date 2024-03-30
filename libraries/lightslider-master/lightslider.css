@@ -6,6 +6,7 @@
 * Copyright (c) 2015 Sachin N; Licensed MIT */
 /** /!!! core css Should not edit !!!/**/ 
 
+
 .lSSlideOuter {
     overflow: hidden;
     -webkit-touch-callout: none;
@@ -139,7 +140,7 @@
 }
 .lSSlideOuter .lSPager.lSGallery img {
     display: block;
-    height: auto;
+    height: 130px;
     max-width: 100%;
 }
 .lSSlideOuter .lSPager.lSGallery:before, .lSSlideOuter .lSPager.lSGallery:after {

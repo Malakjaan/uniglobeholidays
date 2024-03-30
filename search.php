@@ -1,4 +1,10 @@
-<!-- Popular Destination 2 -->
+<?php 
+	include('resources/header.php'); 
+	$pid = base64_decode($_GET['pid']);
+	$get_data = "SELECT * FROM tbl_package WHERE id = $pid";
+	$run_data = mysqli_query($dbcon, $get_data);
+	$row_data = mysqli_fetch_assoc($run_data);
+?>
 <div class="container-fluid no-padding popular-destination2-section">
 			<div class="section-padding"></div>	
 				<div class="container">
@@ -16,10 +22,10 @@
         $run_package = mysqli_query($dbcon, $get_package);
         while( $row_package = mysqli_fetch_array($run_package) ) {
 
-			$pt = $row_package['package_type'];
-			$get_package_type = "SELECT name FROM tbl_package_type WHERE id = '$pt'";
-			$run_package_type = mysqli_query($dbcon, $get_package_type);
-			$row_package_type = mysqli_fetch_array($run_package_type);
+			
+			$get_package1 = "Select * FROM tbl_package WHERE package_name LIKE %query% OR no_of_days LIKE %query% OR no_of_nights LIKE %query% ";
+			$get_package1 = mysqli_query($dbcon, $get_package1);
+			$row_get_package1 = mysqli_fetch_array($run_get_package1);
 
             if($sno == 1 ) {
                 $active = 'active';
@@ -42,10 +48,6 @@
 												<li>Nights:<img src="images/popular-destination2-ic3.png" alt="popular-destination2-ic3" width="28" height="27"><?php echo $row_package['no_of_nights'];?></li>
 												<li>Cost:<img src="images/popular-destination2-ic4.png" alt="popular-destination2-ic4" width="28" height="28"><?php echo $row_package['package_cost'];?></li>
 											</ul>
-											<div class="book-now">
-												<a href="packageDetails.php?pid=<?=base64_encode($row_package['id'])?>" title="Book Now">View Details</a>
-												<span>₹15,010</span>
-											</div>
 										</div>
 									</div>
 									<div class="col-md-7 col-sm-12 no-padding">
@@ -63,3 +65,4 @@
 				</div>
 			<div class="section-padding"></div>
 		</div><!-- Popular Destination 2 /- -->
+		<?php include('resources/footer.php'); ?>

@@ -18,9 +18,9 @@
                     ?>
 					<div class="col-md-6 popular-destination-<?=$leftright?>">
 						<div class="popular-destinatonbox">
-							<img src="assets/images/destinations/<?=$row_dest['image']?>" alt="populardestinaion1-wide"  style="height:390px;"/>
+							<img src="assets/images/destinations/<?=$row_dest['image']?>" alt="populardestinaion1-wide"  style="height: 530px; width: 580px;"/>
 							<div class="popular-destination-info">
-								<a href="destination-details.html" title="Port Jackson"><h3><?=$row_dest['destination_name']?></h3></a>
+								<a href="destination_details.php?id=<?=base64_encode($row_dest['id'])?>" title="Port Jackson"><h3><?=$row_dest['destination_name']?></h3></a>
 								<span><?=$row_dest['destination_location']?></span>
 								<span class="amount">₹355</span>
 							</div>
@@ -33,9 +33,9 @@
                     <?php  }?>
 						<div class="col-md-6 col-sm-6 col-xs-6 no-padding">
                             <div class="popular-destinatonbox">
-                                <img src="assets/images/destinations/<?=$row_dest['image']?>" style="height:190px; width:290px;" alt="populardestinaion1-wide" />
+                                <img src="assets/images/destinations/<?=$row_dest['image']?>" style="height:190px; width: 285px; height: 260px;" alt="populardestinaion1-wide" />
                                 <div class="popular-destination-info">
-                                    <a href="destination-details.html" title="Port Jackson"><h3><?=$row_dest['destination_name']?></h3></a>
+                                    <a href="destination_details.php?id=<?=base64_encode($row_dest['id'])?>" title="Port Jackson"><h3><?=$row_dest['destination_name']?></h3></a>
                                     <span><?=$row_dest['destination_location']?></span>
                                     <span class="amount">₹355</span>
                                 </div>

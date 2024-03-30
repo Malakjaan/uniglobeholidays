@@ -54,14 +54,13 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6 col-sm-6 col-xs-6">
-						<span>Welcome to tours & travels</span>
+						<span>Welcome to Uniglobe Holidays</span>
 					</div>
 					<div class="col-md-6 col-sm-6 col-xs-6">
 						<ul>
-							<li><a href="#" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-							<li><a href="#" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-							<li><a href="#" title="GooglePlus"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-							<li><a href="#" title="Linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+						<li><a href="https://www.facebook.com/parvezahmed.bhat?mibextid=rS40aB7S9Ucbxw6v" title="facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+							<li><a href="https://wa.me/message/4KCS6226JCVFN1" title="whatsapp"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
+							<li><a href="https://www.instagram.com/invites/contact/?i=eldexk4e5xnc&utm_content=m8byvwa" title="google-plus"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
 						</ul>
 					</div>
 				</div>
@@ -72,7 +71,7 @@
 			<div class="row">
 				<div class="col-md-2">
 					<div class="logo-block">
-						<a href="index.html"><img src="images/logo.png" alt="logo" height="52" width="70"/><h3>Uniglobe Holidays</h3><span>tours & travels</span></a>
+						<a href="index.php"><img src="logos/k7.webp" alt="logo" height="100" width="100"/><h3>Uniglobe Holidays</h3><span></span></a>
 					</div>
 				</div>
 				<div class="col-md-10 col-sm-12 col-xs-12">
@@ -119,61 +118,46 @@
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 							</button>
-							<a title="Logo" href="index.html" class="navbar-brand"></a>
-							<a href="index.html" class="mobile-logo" title="Logo"><h3>Global</h3></a>
+							<a title="Logo" href="logos/k7.webp" class="navbar-brand"></a>
+							<a href="index.php" class="mobile-logo" title="Logo"><h3>Global</h3></a>
 						</div>
 						<div class="navbar-collapse collapse" id="navbar">
 							<ul class="nav navbar-nav">
 								<li class="dropdown active">
-									<a aria-expanded="false" aria-haspopup="true" role="button" class="dropdown-toggle" title="Home" href="index.html">Home</a>
+									<a aria-expanded="false" aria-haspopup="true" role="button" class="dropdown-toggle" title="Home" href="index.php">Home</a>
 									<i class="ddl-switch fa fa-angle-down"></i>
 									<ul class="dropdown-menu">
-										<li><a title="Home 2" href="home2.html">Home 2</a></li>
-										<li><a title="About Global" href="#">About Global</a></li>
-										<li><a title="Top Destination" href="#">Top destination</a></li>
-										<li><a title="Our Gallery" href="#">Our gallery</a></li>
-										<li><a title="Contact Us" href="#">Contact us</a></li>
+										<li><a title="my home page" href="index.php">Home</a></li>
 									</ul>
 								</li>
-								<li><a title="About Us" href="aboutus.html">About Us</a></li>
-								<li class="dropdown">
-									<a aria-expanded="false" aria-haspopup="true" role="button" class="dropdown-toggle" title="Destination" href="destination.html">Destination</a>
-									<i class="ddl-switch fa fa-angle-down"></i>
-									<ul class="dropdown-menu">
-										<li><a title="Destination Detail" href="destination-details.html">Destination Detail</a></li>
-									</ul>
-								</li>
+								<li><a title="About Us" href="aboutus.php">About Us</a></li>
 								<li class="dropdown">
 									<a aria-expanded="false" aria-haspopup="true" role="button" class="dropdown-toggle" title="Gallery" href="#">Gallery</a>
 									<i class="ddl-switch fa fa-angle-down"></i>
 									<ul class="dropdown-menu">
-										<li><a title="Gallery 3 Column" href="gallery3column.html">Gallery 3 Column</a></li>
-										<li><a title="Gallery 4 Column" href="gallery4column.html">Gallery 4 Column</a></li>
+										<li><a title="Gallery" href="gallery3.php">Gallery</a></li>
 									</ul>
 								</li>
 								<li class="dropdown">
-									<a aria-expanded="false" aria-haspopup="true" role="button" class="dropdown-toggle" title="Blog" href="blog.html">Blog</a>
+									<a aria-expanded="false" aria-haspopup="true" role="button" class="dropdown-toggle" title="services" href="services.php">Services</a>
 									<i class="ddl-switch fa fa-angle-down"></i>
 									<ul class="dropdown-menu">
-										<li><a title="Blog Single" href="blogpost.html">Blog Single</a></li>
+									<li><a title="services" href="destinations.php">Services</a></li>
 									</ul>
 								</li>
-								<li class="dropdown">
-									<a aria-expanded="false" aria-haspopup="true" role="button" class="dropdown-toggle" title="Pages" href="#">Pages</a>
-									<i class="ddl-switch fa fa-angle-down"></i>
-									<ul class="dropdown-menu">
-									<li><a title="Destination Detail" href="destination-details.html">Destination Detail</a></li>
-									</ul>
-								</li>
-								<li><a title="Contact" href="contactus.html">Contact Us</a></li>
+								<li><a title="Contact" href="contactus.php">Contact Us</a></li>
 							</ul>
 						</div>
 					</div>
 					<div class="input-group menusearch">
-						<input type="text" placeholder="Search for Deals" class="form-control">
-						<span  class="input-group-btn">
-							<button type="button" title="Search" class="btn"><span class="icon_search" aria-hidden="true"></span></button>
+					<form action="search.php" method="GET">
+					<span  class="input-group-btn"><a href="search.php?pid=<?=base64_encode($row_package['id'])?>"></a>
+							<button action="search.php" type="submit" title="Search" class="btn"><span class="icon_search" aria-hidden="true" ></button>
 						</span>
+                        <input type="text" name="query">
+						
+                      </form>
+
 					</div>
 				</nav><!-- Navigation /- -->
 			</div>

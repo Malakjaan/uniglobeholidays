@@ -65,7 +65,7 @@
                                                                         
                                     
                                     <div class="testimonial-thumbbox">
-											<img src="images/testimonial2.1.jpg" alt="testimonial2.1" width="70" height="70"/>
+											<img src="logos/k13.webp"  width="5px" height="5px"/>
 										</div>
 									</div>
 								</li>
